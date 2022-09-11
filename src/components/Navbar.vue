@@ -1,87 +1,96 @@
 <template>
-<div class="navbar">
-  <div class="container-navigation">
-    <nav role = "navigation" class="menu w-nav-menu">
-      <div class="menu-legt">
-        <a href="/">
-          <img class="logo" src="../assets/logo.png" alt="logo">
-        </a>
-      </div>
-      <div class="menu-center">
-        <div class="navLink"><router-link to="/">Home</router-link></div>
-        <div class="navLink"><router-link to="/about">About</router-link></div>
-      </div>
-      <div class="menu-right">
-        <router-link to="/">Home</router-link> |
-        <router-link to="/about">About</router-link>
-      </div>
-    </nav>
-  </div>
-</div>
+<header>
+  <a class="logo" href="/"><img class="logoimg" src="../assets/logo.png" alt="logo"></a>
+  <nav>
+    <ul class="nav__links">
+      <li><a href="#"><router-link to ='/'>Home</router-link></a></li>
+      <li><a href="#"><router-link to="/learn">Learn</router-link></a></li>
+      <li><a href="#"><router-link to="/buildview">Build</router-link></a></li>
+      <li><a href="#"><router-link to="/network">Network</router-link></a></li>
+      <li><a href="#"><router-link to="/comunity">Comunity</router-link></a></li>
+      <li><a href="#"><router-link to="/academy">Academy</router-link></a></li>
+    </ul>
+  </nav>
+  <a class="cta" href="#">Contact</a>
+</header>
 </template>
 
 <script>
-export default {
 
+export default {
+  data() {
+    return {
+
+    }
+  },
+  methods: {
+
+}
 }
 </script>
 
 <style scoped>
-  .navbar {
-    position: relative;
-    z-index: 3;
-  }
-
-  .container-navigation {
-    position: relative;
-    width: 100%;
-    max-width: 1280px;
-    margin-right: auto;
-    margin-left: auto;
-    padding-right: 48px;
-    padding-left: 48px;
-  }
-
-  .menu {
-    display: flex;
-    height: 90px;
-    float: none;
-    -ms-flex-pack: justify;
-    justify-content: space-between;
-    -ms-flex-align: stretch;
-    align-items: stretch;
-    font-weight: 500;
-  }
-
-  .menu-center {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    align-items: center;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-  .w-nav-menu {
-    position: relative;
-    /* float: right; */
-  }
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px 10%;
+  background-color: #eaebef;
+  height: 70px;
+}
 
-  nav {
-    padding: 30px;
-  }
+.logo {
+  cursor: pointer;
+  width: 40px;
+}
 
-  nav a {
-    font-weight: bold;
-    color: #2c3e50;
-  }
+.logoimg {
+  width: 100px;
+}
 
-  nav a.router-link-exact-active {
-    color: #42b983;
-  }
-  .logo {
-    height: 60px;
-  }
-  .navLink {
-    
-  }
+.nav__links a,
+.cta,
+.overlay__content a {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  color: #000000;
+  text-decoration: none;
+}
+
+.nav__links {
+  list-style: none;
+  display: flex;
+}
+
+.nav__links li {
+  padding: 0px 20px;
+}
+
+.nav__links li a {
+  transition: color 0.3s ease 0s;
+}
+
+.nav__links li a:hover {
+  color: #008cff;
+}
+
+.cta {
+  padding: 9px 25px;
+  background-color: rgb(0, 0, 0);
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: background-color 0.3s ease 0s;
+  color: #edf0f1
+}
+
+.cta:hover {
+  background-color: #008cff;
+}
 </style>

@@ -1,6 +1,11 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
+import Learn from '../views/LearnView.vue'
+import BuildView from '../views/BuildView'
 import HomeView from '../views/HomeView.vue'
-import AboutView from '../views/AboutView.vue'
+import AcademyView from '../views/AcademyView.vue'
+import NetworkView from '../views/NetworkView.vue'
+import ComunityView from '../views/ComunityView.vue'
+
 
 const routes = [
   {
@@ -9,9 +14,29 @@ const routes = [
     component: HomeView
   },
   {
-    path: '/about',
-    name: 'about',
-    component: AboutView
+    path: '/academy',
+    name: 'academy',
+    component: AcademyView
+  },
+  {
+    path: '/network',
+    name: 'network',
+    component: NetworkView
+  },
+  {
+    path: '/comunity',
+    name: 'comunity',
+    component: ComunityView
+  },
+  {
+    path: '/learn',
+    name: 'learn',
+    components: Learn
+  },
+  {
+    path: '/buildview',
+    name: 'buildview',
+    components: BuildView
   }
 ]
 
