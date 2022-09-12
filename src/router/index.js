@@ -31,12 +31,12 @@ const routes = [
   {
     path: '/learn',
     name: 'learn',
-    components: Learn
+    component: Learn
   },
   {
     path: '/buildview',
     name: 'buildview',
-    components: BuildView
+    component: BuildView
   }
 ]
 
