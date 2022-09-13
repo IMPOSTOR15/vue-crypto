@@ -3,12 +3,26 @@
   <a class="logo" href="/"><img class="logoimg" src="../assets/logo.png" alt="logo"></a>
   <nav>
     <ul class="nav__links">
-      <li><a href="#"><router-link to ='/'>Home</router-link></a></li>
-      <li><a href="#"><router-link to="/learn">Learn</router-link></a></li>
-      <li><a href="#"><router-link to="/buildview">Build</router-link></a></li>
-      <li><a href="#"><router-link to="/network">Network</router-link></a></li>
-      <li><a href="#"><router-link to="/comunity">Comunity</router-link></a></li>
-      <li><a href="#"><router-link to="/academy">Academy</router-link></a></li>
+      <li :active="activeElem === elem"
+          @activate="activeElem === elem"  
+      >
+        <a href="#"><router-link to ='/'>Home</router-link></a>
+      </li>
+      <li>
+        <a href="#"><router-link to="/learn">Learn</router-link></a>
+      </li>
+      <li>
+        <a href="#"><router-link to="/buildview">Build</router-link></a>
+      </li>
+      <li>
+        <a href="#"><router-link to="/network">Network</router-link></a>
+      </li>
+      <li>
+        <a href="#"><router-link to="/comunity">Comunity</router-link></a>
+      </li>
+      <li>
+        <a href="#"><router-link to="/academy">Academy</router-link></a>
+      </li>
     </ul>
   </nav>
   <a class="cta" href="#">Contact</a>
@@ -20,6 +34,7 @@
 export default {
   data() {
     return {
+      activeElem: null,
 
     }
   },
@@ -41,7 +56,7 @@ header {
   justify-content: space-between;
   align-items: center;
   padding: 30px 10%;
-  background-color: #eaebef;
+  background-color: #ededf2;
   height: 70px;
 }
 
@@ -78,6 +93,11 @@ header {
 
 .nav__links li a:hover {
   color: #008cff;
+}
+
+nav a.router-link-exact-active {
+  border-bottom: 2.5px solid #008cff;
+  padding-bottom: 3px;
 }
 
 .cta {
