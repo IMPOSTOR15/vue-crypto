@@ -1,7 +1,7 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import Learn from '../views/LearnView.vue'
 import BuildView from '../views/BuildView'
-import HomeView from '../views/HomeView.vue'
+import HomeView from '../views/HomePageDir/HomeView.vue'
 import AcademyView from '../views/AcademyView.vue'
 import NetworkView from '../views/NetworkView.vue'
 import ComunityView from '../views/ComunityView.vue'

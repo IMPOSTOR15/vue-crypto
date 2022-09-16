@@ -56,7 +56,8 @@ header {
   justify-content: space-between;
   align-items: center;
   padding: 30px 10%;
-  background-color: #ededf2;
+  background-color: #131315;
+  opacity: 70%;
   height: 70px;
 }
 
@@ -66,7 +67,7 @@ header {
 }
 
 .logoimg {
-  width: 100px;
+  width: 50px;
 }
 
 .nav__links a,
@@ -74,7 +75,7 @@ header {
 .overlay__content a {
   font-family: "Montserrat", sans-serif;
   font-weight: 500;
-  color: #000000;
+  color: #ffffff;
   text-decoration: none;
 }
 
@@ -103,7 +104,7 @@ nav a.router-link-exact-active {
 .cta {
   padding: 9px 25px;
   background-color: rgb(0, 0, 0);
-  border: none;
+  border: 1px solid #008cff;
   border-radius: 50px;
   cursor: pointer;
   transition: background-color 0.3s ease 0s;
@@ -111,6 +112,7 @@ nav a.router-link-exact-active {
 }
 
 .cta:hover {
-  background-color: #008cff;
+  background-image: linear-gradient(90deg,#228bbc,#002c81);
 }
+
 </style>
