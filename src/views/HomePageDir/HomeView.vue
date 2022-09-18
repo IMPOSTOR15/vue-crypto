@@ -50,7 +50,7 @@ export default {
 }
 
 .moon-img {
-  width: 80ss%;
+  width: 80%;
 }
 
 .container {
@@ -74,7 +74,7 @@ export default {
   text-align: center;
   text-decoration: none;
   color: #a9e2ff;
-  transition: background, color 0.5s ease-out;
+  transition: background 0.5s ease-out;
 }
 
 
