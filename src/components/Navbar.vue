@@ -104,7 +104,7 @@ nav a.router-link-exact-active {
 .cta {
   padding: 9px 25px;
   background-color: rgb(0, 0, 0);
-  border: 1px solid #008cff;
+  border: 2px solid #008cff;
   border-radius: 50px;
   cursor: pointer;
   transition: background-color 0.3s ease 0s;

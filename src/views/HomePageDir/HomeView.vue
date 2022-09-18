@@ -2,9 +2,13 @@
   <div class="home">
     <h1 class="main-header">WELCOME TO MOONLIGHT</h1>
     <p class="main-text">Fueled by a passionate community and deep developer talent pool, the Terra blockchain is fully community-owned and built to enable the next generation of Web3 products and services.</p>
-    <img src="@/assets/bluemoon.png" alt="">
+    <div class="container">
+      <a class="button" href="">
+        <div class="text-30">Learn About Moonlight</div>
+      </a>
+    </div>
+    <img class="moon-img" src="@/assets/bluemoon.png" alt="">
     <main-cards></main-cards>
-    
   </div>
 </template>
 
@@ -24,7 +28,7 @@ export default {
   box-sizing: border-box;
 }
 .home {
-  display: center;
+  display: block;
   align-content: center;
 }
 .main-header {
@@ -43,5 +47,39 @@ export default {
   margin-left: auto;
   margin-right: auto;
   width: 70%;
+}
+
+.moon-img {
+  width: 80ss%;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.button {
+  display: flex;
+  width: 400px;
+  justify-content: center;
+  padding: 14px 36px;
+  border-radius: 28px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  background: #212121;
+  font-size: 18px;
+  line-height: 21px;
+  font-weight: 500;
+  text-align: center;
+  text-decoration: none;
+  color: #a9e2ff;
+  transition: background, color 0.5s ease-out;
+}
+
+
+.button:hover {
+  background: #002c81;
+  color: #fff
 }
 </style>
