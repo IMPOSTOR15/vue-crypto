@@ -2,7 +2,7 @@ import { createRouter, createWebHashHistory } from 'vue-router'
 import Learn from '../views/LearnView.vue'
 import BuildView from '../views/BuildView'
 import HomeView from '../views/HomePageDir/HomeView.vue'
-import AcademyView from '../views/AcademyView.vue'
+import StakingView from '../views/StakingView.vue'
 import NetworkView from '../views/NetworkView.vue'
 import ComunityView from '../views/ComunityView.vue'
 
@@ -14,9 +14,9 @@ const routes = [
     component: HomeView
   },
   {
-    path: '/academy',
-    name: 'academy',
-    component: AcademyView
+    path: '/staking',
+    name: 'staking',
+    component: StakingView
   },
   {
     path: '/network',

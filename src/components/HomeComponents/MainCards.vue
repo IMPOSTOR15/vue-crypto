@@ -26,7 +26,7 @@
 
 <script>
 export default {
-
+  
 }
 </script>
 
@@ -38,12 +38,14 @@ export default {
   padding: 36px 36px 150px;
   flex-direction: column;
   justify-content: flex-start;
-  border: 1px solid #363636;
+  border: 2px solid #363636;
   border-radius: 12px;
   color: #fff;
   width: 400px;
-  text-decoration: none
+  text-decoration: none;
+  transition: border 0.5s ease 0s;
 }
+
 .listitem {
   display: flex;
   padding: 10px;
@@ -57,17 +59,8 @@ export default {
   justify-content: center;
   flex-wrap: wrap;
 }
-.text50 {
-  font-size: 24px;
-  font-weight: 700;
-  color: rgb(255, 255, 255);
-  
-}
 .text30 {
   margin-top: 16px;
-  font-size: 16px;
-  line-height: 1.6;
-  color: rgb(255, 255, 255);
   text-align: left;
 }
 .button {
@@ -80,7 +73,6 @@ export default {
   padding: 14px 36px;
   border-radius: 28px;
   background-color: #262626;
-  /* background-image: linear-gradient(180deg,#262626,#262626); */
   transition: .2s;
   text-align: center;
   box-sizing: border-box;

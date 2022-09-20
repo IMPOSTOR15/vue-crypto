@@ -21,7 +21,7 @@
         <a href="#"><router-link to="/comunity">Comunity</router-link></a>
       </li>
       <li>
-        <a href="#"><router-link to="/academy">Academy</router-link></a>
+        <a href="#"><router-link to="/staking">Staking</router-link></a>
       </li>
     </ul>
   </nav>
