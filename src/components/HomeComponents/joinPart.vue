@@ -7,8 +7,8 @@
     Build crypto next killer app using MoonLight suite of developer tools and resources, or create a Station wallet to start interacting with an array of ecosystem applications.
   </div>
   <div class="button-line">
-    <div class="button">Build on MoonLight</div>
-    <div class="button">Create a Wallet</div>
+    <a href="#" id="1" class="button">Build on MoonLight</a>
+    <a href="#" class="button">Create a Wallet</a>
   </div>
 </div>
 
@@ -23,8 +23,11 @@ export default {
 
 <style scoped>
 .container {
-  display: block;
-  align-content: center;
+  margin-top: 70px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+
 }
 .text50 {
   font-size: 24px;
@@ -39,17 +42,14 @@ export default {
   color: rgb(255, 255, 255);
 }
 
-.button-list {
-  padding: 10px;
+.button-line {
+  margin-top: 100px;
 }
 
 .button {
-  width: 300px;
-  justify-content: center;
-  padding: 14px 36px;
+  margin: 10px;
+  padding: 16px 36px;
   border-radius: 28px;
-  margin-top: 30px;
-  margin-bottom: 30px;
   background: #212121;
   font-size: 18px;
   line-height: 21px;
@@ -60,9 +60,9 @@ export default {
   transition: background 0.5s ease-out;
 }
 
-
 .button:hover {
   background: #002c81;
   color: #fff
 }
+
 </style>

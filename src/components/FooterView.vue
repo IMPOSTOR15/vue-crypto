@@ -43,7 +43,7 @@ export default {
 .footer {
   margin-top: 240px;
   padding-top: 100px;
-  padding-bottom: 160px;
+  padding-bottom: 50px;
   border-top: 1px solid #262626;
 }
 
