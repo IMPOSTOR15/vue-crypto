@@ -49,6 +49,8 @@ export default {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  position: relative;
+  z-index: 1;
 }
 
 header {
@@ -57,8 +59,12 @@ header {
   align-items: center;
   padding: 30px 10%;
   background-color: #131315;
-  opacity: 70%;
+  opacity: 96%;
   height: 70px;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+
 }
 
 .logo {
@@ -112,7 +118,7 @@ nav a.router-link-exact-active {
 }
 
 .cta:hover {
-  background-image: linear-gradient(90deg,#228bbc,#002c81);
+  background: #008cff;
 }
 
 </style>

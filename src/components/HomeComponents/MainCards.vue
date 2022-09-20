@@ -32,7 +32,6 @@ export default {
 
 <style scoped>
 .card {
-  position: relative;
   display: block;
   min-height: 80px;
   min-width: 80px;
@@ -77,23 +76,18 @@ export default {
   bottom: 36px;
   display: flex;
   width: 100px;
-  min-width: 100px;
   justify-content: center;
   padding: 14px 36px;
   border-radius: 28px;
   background-color: #262626;
-  background-image: linear-gradient(180deg,#262626,#262626);
+  /* background-image: linear-gradient(180deg,#262626,#262626); */
   transition: .2s;
-  font-family: Gotham,sans-serif;
-  font-size: 14px;
-  line-height: 21px;
-  font-weight: 500;
   text-align: center;
   box-sizing: border-box;
+  transition: background 0.5s ease 0s;
 }
 .button:hover {
-  position: absolute;
-  display: block;
-  background-image: linear-gradient(90deg,#228bbc,#002c81);
+  background: #002c81;
+  color: #fff
 }
 </style>

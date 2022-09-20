@@ -9,16 +9,18 @@
     </div>
     <img class="moon-img" src="@/assets/bluemoon.png" alt="">
     <main-cards></main-cards>
+    <join-part></join-part>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import MainCards from '@/components/MainCards.vue'
+
+import MainCards from '@/components/HomeComponents/MainCards.vue'
+import JoinPart from '@/components/HomeComponents/joinPart.vue'
 
 export default {
   components: {
-    MainCards
+    MainCards, JoinPart
   }
 }
 </script>
@@ -51,6 +53,7 @@ export default {
 
 .moon-img {
   width: 80%;
+  margin-bottom: 100px;
 }
 
 .container {
