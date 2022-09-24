@@ -1,6 +1,6 @@
 <template>
   <div class="Page">
-    <h1 class="text50-header">Developers Handbook</h1>
+    <h1 class="text50 header">Developers Handbook</h1>
     <p class="text30">It's easy to get lost in Web3. MoonLight makes things simple.</p>
     <img src="@/assets/moontool.jpg" alt="" >
     <div class="button-line" style="margin-top: 100px;">
@@ -63,16 +63,6 @@ export default {
   margin-left: 100px;
   margin-right: 100px;
   margin-top: 16px;
-}
-.text50-header {
-  padding-top: 30px;
-  font-size: 80px;
-  text-transform: uppercase;
-  background: linear-gradient(45deg, #37a6dd 33%, #0057b4 66%, #002a68);
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  line-height: 50px;
-  padding-bottom: 30px;
 }
 .button-line {
   display: flex;
