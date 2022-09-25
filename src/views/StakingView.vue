@@ -4,56 +4,72 @@
     <p class="text30">On this page you can easy calculate your staking profit on MoonLight network</p>
     <div class="calculator">
       <div class="calculator-space">
+        <div class="content">
+          <h1>Input data</h1>
         <div class="select">
           <div class="row">
             <div class="section">
-              <input type="number" name="input" v-model="CountOfCoin" placeholder=" ">
               <label>Staking Amount</label>
+              <input type="number" name="input" v-model="CountOfCoin" placeholder=" ">
             </div>
             <div class="section">
+              <label>Staking currency</label>
               <select name="input" v-model="currencyStaked">
                 <option value="MoonLight">MoonLight</option>
                 <option value="BTC">Bitcoin</option>
                 <option value="ETH">Ethereum</option>
               </select>
-              <label>Staking currency</label>
             </div>
             <div class="section">
-              <select name="input" v-model="currencyRevard">
-                <option value="MoonLight">MoonLight</option>
-                <option value="BTC">Bitcoin</option>
-                <option value="ETH">Ethereum</option>
-              </select>
-              <label>Revard currency</label>
-            </div>
-            <div class="section">
+              <label>Revard frequency</label>
               <select name="input" v-model="stakingPeriod">
                 <option value="Dayly">Dayly</option>
                 <option value="Weekly">Weekly</option>
                 <option value="Monthly">Monthly</option>
                 <option value="Yearly">Yearly</option>
               </select>
-              <label>Revard frequency</label>
             </div>
+          </div>
+          <div class="row">
             <div class="section">
-              <input type="number" name="input" placeholder=" " v-model="stakingPercent">
               <label>Revard rate (%)</label>
+              <input type="number" name="input" placeholder=" " v-model="stakingPercent">
             </div>
             <div class="section">
-              <input type="number" name="input" placeholder=" " v-model="yearsCount">
-              <label>Years to calculate</label>
+              <label v-if="stakingPeriod === 'Yearly'">Years to calculate</label>
+              <label v-if="stakingPeriod === 'Weekly'">Weeks to calculate</label>
+              <label v-if="stakingPeriod === 'Monthly'">Month to calculate</label>
+              <label v-if="stakingPeriod === 'Dayly'">Days to calculate</label>
+              <input type="number" name="input" placeholder=" " v-model="TimeSetCount">
+            </div>
+            <div class="section">
+              <div class="switchSpace">
+                <label>Reinvest</label>
+                <div @click="switcher" class="switchbtn" :class="{switchon: switchOnCheck}"></div>
+              </div>
             </div>
           </div>
-          <button class="button"
-          @click="calculate"
-          >Calculate</button>
+            <button class="callc-btn"
+              @click="calculate"
+              >Calculate
+            </button>
         </div>
-        <div class="result" v-if="calculateCheck">
-          <div class="table">
-            <div class="currency">Curency staked: {{currencyStaked}}</div>
-            <div class="ammount">Amount of coins after staked: {{result}}</div>
-            <div class="profit">Your profit: {{result - CountOfCoin}}</div>
+        <div class="result">
+          <div class="row">
+            <div class="section">
+              <label>Amount of {{currencyToCalculate}} after staked:</label>
+              <input type="number" name="input" v-model="result" placeholder=" " readonly>
+            </div>
+            <div class="section">
+              <label>Your {{stakingPeriod}} profit:</label>
+              <input type="number" name="input" v-model="periodProfit" placeholder=" " readonly>
+            </div>
+            <div class="section">
+              <label>Your all time profit:</label>
+              <input class="result-input" type="number" name="input" v-model="profit" placeholder=" " readonly>
+            </div>
           </div>
+        </div>
         </div>
       </div>
     </div>
@@ -71,30 +87,54 @@
 </template>
 
 <script>
+
+
+
 export default {
   data() {
     return {
       calculateCheck: false,
       CountOfCoin: 100,
       currencyStaked: 'MoonLight',
-      currencyRevard: 'MoonLight',
       stakingPeriod: 'Yearly',
       stakingPercent: '5',
-      yearsCount: '10',
+      TimeSetCount: '10',
+      coinToCalculate: 0,
+      currencyToCalculate: '',
+      stakingPeriodToCalculate: '',
+      stakingPercentToCalculate: 0,
+      TimeSetCountToCalculate: '',
+      periodProfit: 0,
       result: 0,
+      profit: 0,
+      switchOnCheck: false,
+      reinvest: false,
+      
     }
   },
   methods: {
+    switcher() {
+      this.switchOnCheck = !this.switchOnCheck
+      this.reinvest = !this.reinvest
+    },
     calculate() {
-      this.result = this.CountOfCoin
-      if (this.currencyStaked === 'MoonLight') {
-        if (this.currencyRevard === 'MoonLight') {
-          if (this.stakingPeriod === 'Yearly') {
-          this.calculateCheck = true
-          this.result = this.result +  (this.CountOfCoin * (this.stakingPercent / 100))
-          }
-        }
+      this.coinToCalculate = this.CountOfCoin
+      this.currencyToCalculate = this.currencyStaked
+      this.stakingPeriodToCalculate = this.stakingPeriod
+      this.stakingPercentToCalculate = this.stakingPercent
+      this.TimeSetCountToCalculate = this.TimeSetCount
+      this.result = this.coinToCalculate
+      this.periodProfit = this.coinToCalculate * this.stakingPercent / 100
+      if (this.reinvest) {
+        for (let i = 0; i < this.TimeSetCount; i++) {
+        this.result = this.result + this.result * (this.stakingPercent / 100)
       }
+      } else {
+        this.result = this.result + this.result * (this.stakingPercent / 100) * this.TimeSetCount
+      }
+      
+      this.profit = this.result - this.coinToCalculate
+      this.calculateCheck = true
     }
   }
 }
@@ -109,10 +149,66 @@ export default {
 }
 
 .calculator-space {
-  height: 1000px;
-  width: 70%;
-  background: rgb(19, 44, 89);
-  border-radius: 40px;
+  position: relative;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  border-radius: 30px;
+}
+
+.content {
+  margin: 20px;
+}
+
+.row {
+  display: flex;
+  position: relative;
+  margin-top: 50px;
+}
+.section {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+input, select {
+  margin: 10px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  border-radius: 28px;
+  background: #2f2f2f;
+  font-size: 18px;
+  line-height: 21px;
+  font-weight: 500;
+  text-align: center;
+  text-decoration: none;
+  color: #ffffff;
+  align-self: center;
+  display: block;
+  width: 300px;
+  border: 2px solid #565656;
+  appearance: none;
+  outline: none;
+  
+}
+select {
+  padding-right: 40px;
+  padding-left: 40px;
+  outline: none;
+  align-items: center;
+}
+select::-ms-expand {
+  display: none;
+}
+.select:after {
+  justify-self: end;
+}
+.switchSpace {
+  width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  display: flex;
+  flex-direction: column;
 }
 
 .faq {
@@ -122,5 +218,66 @@ export default {
   justify-content: center;
   margin-left: auto;
   margin-right: auto;
+}
+
+.callc-btn {
+  margin: 30px;
+  padding: 16px 36px;
+  border-radius: 28px;
+  background: #212121;
+  font-size: 18px;
+  line-height: 21px;
+  font-weight: 500;
+  padding: 9px 25px;
+  background-color: rgb(0, 0, 0);
+  border: 2px solid #008cff;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: background-color 0.3s ease 0s;
+  color: #edf0f1
+}
+
+.callc-btn:hover {
+  background: #008cff;
+}
+
+.switchbtn {
+  width: 72px;
+  height: 38px;
+  border-radius: 19px;
+  background: #2f2f2f;
+  z-index: 0;
+  cursor: pointer;
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  transition-duration: 300ms;
+  border: 2px solid #008cff;
+}
+.result-input {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;    
+}
+.switchbtn::after {
+  content: "";
+  height: 32px;
+  width: 32px;
+  border-radius: 17px;
+  background: #fff;
+  top: 3px;
+  left: 3px;
+  transition-duration: 300ms;
+  position: absolute;
+  z-index: 1;
+}
+.switchon {
+  background: #008cff;
+}
+.switchon::after {
+  left: 37px;
 }
 </style>
