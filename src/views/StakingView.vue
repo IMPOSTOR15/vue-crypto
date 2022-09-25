@@ -56,8 +56,12 @@
         </div>
         <div class="result">
           <div class="row">
-            <div class="section">
+            <div class="section" v-if="currencyToCalculate !== ''">
               <label>Amount of {{currencyToCalculate}} after staked:</label>
+              <input type="number" name="input" v-model="result" placeholder=" " readonly>
+            </div>
+            <div class="section" v-else>
+              <label>Amount of coin after staked:</label>
               <input type="number" name="input" v-model="result" placeholder=" " readonly>
             </div>
             <div class="section" v-if="reinvest">
