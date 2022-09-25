@@ -60,7 +60,11 @@
               <label>Amount of {{currencyToCalculate}} after staked:</label>
               <input type="number" name="input" v-model="result" placeholder=" " readonly>
             </div>
-            <div class="section">
+            <div class="section" v-if="reinvest">
+              <label>Your Average {{stakingPeriod}} profit:</label>
+              <input type="number" name="input" v-model="periodProfit" placeholder=" " readonly>
+            </div>
+            <div class="section" v-else>
               <label>Your {{stakingPeriod}} profit:</label>
               <input type="number" name="input" v-model="periodProfit" placeholder=" " readonly>
             </div>
@@ -124,13 +128,15 @@ export default {
       this.stakingPercentToCalculate = this.stakingPercent
       this.TimeSetCountToCalculate = this.TimeSetCount
       this.result = this.coinToCalculate
-      this.periodProfit = this.coinToCalculate * this.stakingPercent / 100
+      
       if (this.reinvest) {
         for (let i = 0; i < this.TimeSetCount; i++) {
         this.result = this.result + this.result * (this.stakingPercent / 100)
-      }
+        }
+        this.periodProfit = (this.result - this.coinToCalculate) / this.TimeSetCountToCalculate
       } else {
         this.result = this.result + this.result * (this.stakingPercent / 100) * this.TimeSetCount
+        this.periodProfit = this.coinToCalculate * this.stakingPercent / 100
       }
       
       this.profit = this.result - this.coinToCalculate
