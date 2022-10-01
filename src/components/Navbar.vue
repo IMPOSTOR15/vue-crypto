@@ -4,7 +4,7 @@
   <nav>
     <ul class="nav__links">
       <li :active="activeElem === elem"
-          @activate="activeElem === elem"  
+          @activate="activeElem === elem" 
       >
         <a href="#"><router-link to ='/'>Home</router-link></a>
       </li>
@@ -14,33 +14,33 @@
       <li>
         <a href="#"><router-link to="/buildview">Build</router-link></a>
       </li>
-      <li>
+      <li v-if="$store.state.user">
         <a href="#"><router-link to="/network">Network</router-link></a>
       </li>
-      <li>
+      <li v-if="$store.state.user">
         <a href="#"><router-link to="/comunity">Comunity</router-link></a>
       </li>
-      <li>
+      <li v-if="$store.state.user">
         <a href="#"><router-link to="/staking">Staking</router-link></a>
       </li>
     </ul>
   </nav>
-  <a class="cta" href="#">Contact</a>
+  <button class="cta" @click="$store.dispatch('logout')" v-if="$store.state.user">Logout</button>
+  <router-link class="cta" to="/login" v-if="!$store.state.user">Login</router-link>
 </header>
 </template>
 
 <script>
+import { useStore } from 'vuex'
 
 export default {
-  data() {
-    return {
-      activeElem: null,
+  setup() {
+    const store = useStore()
 
+    return {
+      user: store.state.user
     }
   },
-  methods: {
-
-}
 }
 </script>
 

@@ -1,14 +1,28 @@
 <template>
-  <navbar/>
-  <router-view/>
-  <footer-view/>
+  <navbar />
+  <router-view />
+  <footer-view />
 </template>
 
 <script>
+import { onBeforeMount } from 'vue'
+import { useStore } from 'vuex'
+
 import Navbar from '@/components/Navbar.vue'
 import FooterView from '@/components/FooterView.vue'
 
 export default {
+  setup() {
+    const store = useStore()
+
+    onBeforeMount(() => {
+      store.dispatch('fetchUser')
+    })
+
+    return {
+      user: store.state.user
+    }
+  },
   components: {
     Navbar,
     FooterView
