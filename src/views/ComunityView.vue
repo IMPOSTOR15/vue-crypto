@@ -1,5 +1,21 @@
 <template>
   <div class="about">
-    <h1>This is an comunity page</h1>
+    <h1>Ethereum chart page</h1>
   </div>
+  <chart></chart>
 </template>
+
+
+<script>
+import Chart from '@/components/ChartFolder/Chart.vue'
+
+export default {
+  components: {
+    Chart
+  }
+}
+</script>
+
+<style>
+
+</style>
