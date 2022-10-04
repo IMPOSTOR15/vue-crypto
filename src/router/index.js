@@ -6,7 +6,7 @@ import BuildView from '../views/BuildView'
 import HomeView from '../views/HomePageDir/HomeView.vue'
 import StakingView from '../views/StakingView.vue'
 import NetworkView from '../views/NetworkView.vue'
-import ComunityView from '../views/ComunityView.vue'
+import ChartView from '../views/ChartView.vue'
 import loginView from '../views/LoginViews/LoginView.vue'
 import RegisterView from '../views/LoginViews/RegisterView.vue'
 
@@ -33,9 +33,9 @@ const routes = [
     }
   },
   {
-    path: '/comunity',
-    name: 'comunity',
-    component: ComunityView,
+    path: '/chart',
+    name: 'chart',
+    component: ChartView,
     meta: {
       requiresAuth: true
     }

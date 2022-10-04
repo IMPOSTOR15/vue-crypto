@@ -18,7 +18,7 @@
         <a href="#"><router-link to="/network">Network</router-link></a>
       </li>
       <li v-if="$store.state.user">
-        <a href="#"><router-link to="/comunity">Comunity</router-link></a>
+        <a href="#"><router-link to="/chart">Chart</router-link></a>
       </li>
       <li v-if="$store.state.user">
         <a href="#"><router-link to="/staking">Staking</router-link></a>
@@ -38,7 +38,7 @@ export default {
     const store = useStore()
 
     return {
-      user: store.state.user
+      user: store.state.user,
     }
   },
 }

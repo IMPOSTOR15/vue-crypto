@@ -1,8 +1,7 @@
 <template>
-  <div class="about">
-    <h1>Ethereum chart page</h1>
+  <div class="page">
+    <chart></chart>
   </div>
-  <chart></chart>
 </template>
 
 
@@ -16,6 +15,6 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 
 </style>

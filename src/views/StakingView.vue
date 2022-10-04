@@ -10,7 +10,7 @@
           <div class="row">
             <div class="section">
               <label>Staking Amount</label>
-              <input type="number" name="input" v-model="CountOfCoin" placeholder=" ">
+              <input type="number" name="input" v-model="CountOfCoin" placeholder=" " min="0" oninput="this.value = Math.abs(this.value)">
             </div>
             <div class="section">
               <label>Staking currency</label>
@@ -33,14 +33,14 @@
           <div class="row">
             <div class="section">
               <label>Revard rate (%)</label>
-              <input type="number" name="input" placeholder=" " v-model="stakingPercent">
+              <input type="number" name="input" placeholder=" " v-model="stakingPercent" min="0" oninput="this.value = Math.abs(this.value)">
             </div>
             <div class="section">
               <label v-if="stakingPeriod === 'Yearly'">Years to calculate</label>
               <label v-if="stakingPeriod === 'Weekly'">Weeks to calculate</label>
               <label v-if="stakingPeriod === 'Monthly'">Month to calculate</label>
               <label v-if="stakingPeriod === 'Dayly'">Days to calculate</label>
-              <input type="number" name="input" placeholder=" " v-model="TimeSetCount">
+              <input type="number" name="input" placeholder=" " v-model="TimeSetCount" min="1" oninput="this.value = Math.abs(this.value)">
             </div>
             <div class="section">
               <div class="switchSpace">
@@ -117,7 +117,13 @@ export default {
       profit: 0,
       switchOnCheck: false,
       reinvest: false,
-      
+    }
+  },
+  computed: {
+    valueChek() {
+      if (this.CountOfCoin < 0) {
+        this.CountOfCoin = 0
+      }
     }
   },
   methods: {
