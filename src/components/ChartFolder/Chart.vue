@@ -47,7 +47,7 @@ export default {
       curencyChart: 'bitcoin',
       curencyChartShow: 'bitcoin',
       width: 1500,
-      height: 600,
+      height: 500,
       options: {
         chart: {
           id: 'vue-mooncrypto-chart',
@@ -118,7 +118,6 @@ export default {
       this.price_arr = []
       this.data_arr = []
       this.getChartData(this.curencyChart,this.days);
-      console.log(this.options.title.text);
     },
   }
 }

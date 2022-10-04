@@ -1,5 +1,6 @@
 <template>
   <div class="page">
+    <h1 class="text50 header">Cryptocurrencies Chart</h1>
     <chart></chart>
   </div>
 </template>
@@ -16,5 +17,7 @@ export default {
 </script>
 
 <style scoped>
-
+  h1 {
+    margin-bottom: 60px;
+  }
 </style>
