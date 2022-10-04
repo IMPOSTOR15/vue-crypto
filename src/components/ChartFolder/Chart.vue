@@ -1,6 +1,6 @@
 <template>
   <div class="chart-space">
-    <apexchart class="chart" width="1500" height="600" type="area" :options="options" :series="series" :fill="fill"></apexchart>
+    <apexchart class="chart" :width="width" :height="height" type="area" :options="options" :series="series" :fill="fill"></apexchart>
   </div>
 
   <div class="form-section">
@@ -46,7 +46,8 @@ export default {
       days: 500,
       curencyChart: 'bitcoin',
       curencyChartShow: 'bitcoin',
-
+      width: 1500,
+      height: 600,
       options: {
         chart: {
           id: 'vue-mooncrypto-chart',
@@ -59,7 +60,7 @@ export default {
           type: 'datetime',
         },
         title: {
-          text: '',
+          text: `Chart Page`,
           align: 'left',
           style: {
             fontSize: '30px',
@@ -111,14 +112,13 @@ export default {
         });
     },
     ShowChart() {
-      this.options.title.text = ''
-      this.options.title.text = String(this.curencyChart.toUpperCase() + ' chart page')
       this.curencyChartShow = this.curencyChart
       this.options.xaxis.categories = []
       this.series[0].data = ['']
       this.price_arr = []
       this.data_arr = []
       this.getChartData(this.curencyChart,this.days);
+      console.log(this.options.title.text);
     },
   }
 }
