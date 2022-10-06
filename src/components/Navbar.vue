@@ -25,8 +25,11 @@
       </li>
     </ul>
   </nav>
-  <button class="cta" @click="$store.dispatch('logout')" v-if="$store.state.user">Logout</button>
-  <router-link class="cta" to="/login" v-if="!$store.state.user">Login</router-link>
+    <div class="btn-container">
+      <router-link class="cta account-btn"  to="/account" v-if="$store.state.user">Account</router-link>  
+      <router-link class="cta" @click="$store.dispatch('logout')" v-if="$store.state.user" to="/">Logout</router-link>
+      <router-link class="cta" to="/login" v-if="!$store.state.user">Login</router-link>
+    </div>
 </header>
 </template>
 
@@ -35,9 +38,10 @@ import { useStore } from 'vuex'
 
 export default {
   setup() {
-    const store = useStore()
+    const store = useStore();
 
     return {
+      store,
       user: store.state.user,
     }
   },
@@ -108,17 +112,26 @@ nav a.router-link-exact-active {
 }
 
 .cta {
-  padding: 9px 25px;
+  padding: 5px 30px;
   background-color: rgb(0, 0, 0);
   border: 2px solid #008cff;
   border-radius: 50px;
   cursor: pointer;
   transition: background-color 0.3s ease 0s;
-  color: #edf0f1
+  color: #edf0f1;
+  
 }
 
 .cta:hover {
   background: #008cff;
+}
+.btn-container {
+  display: flex;
+  align-items: center;
+}
+.account-btn {
+  margin-left: -240px;
+  margin-right: 20px;
 }
 
 </style>

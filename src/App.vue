@@ -1,7 +1,7 @@
 <template>
-  <navbar />
+  <navbar  v-if="$route.name!='account'"/>
   <router-view />
-  <footer-view />
+  <footer-view v-if="$route.name!='account'" />
 </template>
 
 <script>

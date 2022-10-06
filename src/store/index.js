@@ -9,7 +9,7 @@ import {
 
 export default createStore({
   state: {
-    user: null
+    user: null,
   },
   getters: {
 

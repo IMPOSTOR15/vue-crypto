@@ -9,6 +9,8 @@ import NetworkView from '../views/NetworkView.vue'
 import ChartView from '../views/ChartView.vue'
 import loginView from '../views/LoginViews/LoginView.vue'
 import RegisterView from '../views/LoginViews/RegisterView.vue'
+import AccountView from '../views/AccountView.vue'
+
 
 const routes = [
   {
@@ -60,6 +62,11 @@ const routes = [
     name: 'registration',
     component: RegisterView,
   },
+  {
+    path: '/account',
+    name: 'account',
+    component: AccountView,
+  }
 ]
 
 const router = createRouter({

@@ -1,9 +1,14 @@
 <template>
   <div class="chart-space">
-    <apexchart class="chart" :width="width" :height="height" type="area" :options="options" :series="series" :fill="fill"></apexchart>
+    <LoadingIndicator class="loading" v-if="loading"></LoadingIndicator>
+    <apexchart v-else class="chart" :width="width" :height="height" type="area" :options="options" :series="series"></apexchart>
   </div>
 
   <div class="form-section">
+    <!-- <div class="section">
+      <label>Enter days number</label>
+      <input type="number" v-model="days">
+    </div> -->
     <div class="section">
       <label>Chart currency</label>
       <select name="input" v-model="curencyChart">
@@ -38,6 +43,9 @@
 
 <script>
 import axios from "axios";
+
+import LoadingIndicator from '@/components/LoadingIndicator.vue'
+
 export default {
   data() {
     return {
@@ -48,6 +56,7 @@ export default {
       curencyChartShow: 'bitcoin',
       width: 1500,
       height: 500,
+      loading: false,
       options: {
         chart: {
           id: 'vue-mooncrypto-chart',
@@ -79,7 +88,7 @@ export default {
         },
         stroke: {
           width: 2,
-          curve: 'smooth',
+          // curve: 'smooth',
         },
       },
       series: [{
@@ -96,6 +105,7 @@ export default {
   
   methods: {
     async getChartData(coin, days) {
+      this.loading = true
       await axios
         .get(
           `https://api.coingecko.com/api/v3/coins/${coin}/market_chart?vs_currency=usd&days=${String(days)}&interval=daily`
@@ -105,20 +115,23 @@ export default {
             this.price_arr.push(cell[1].toFixed(2))
             this.data_arr.push(cell[0])
           });
-          ;
+
           this.options.xaxis.categories.push(...this.data_arr)
           this.series[0].data.push(...this.price_arr)
-          this.options.xaxis.categories.shift()
+          this.loading = false
         });
     },
     ShowChart() {
-      this.curencyChartShow = this.curencyChart
-      this.options.xaxis.categories = []
-      this.series[0].data = ['']
-      this.price_arr = []
-      this.data_arr = []
+      this.curencyChartShow = this.curencyChart;
+      this.options.xaxis.categories = [];
+      this.series[0].data = [];
+      this.price_arr = [];
+      this.data_arr = [];
       this.getChartData(this.curencyChart,this.days);
     },
+  },
+  components: {
+    LoadingIndicator
   }
 }
 </script>
@@ -173,5 +186,9 @@ h2, p {
   max-width: 70%;
   margin: auto;
   margin-top: 30px;
+}
+
+.loading {
+  margin-top: 200px;
 }
 </style>
