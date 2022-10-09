@@ -189,6 +189,7 @@ h2, p {
 }
 
 .loading {
-  margin-top: 200px;
+  margin-top: 254px;
+  margin-bottom: 255px;
 }
 </style>

@@ -1,7 +1,8 @@
 <template>
   <sidebar></sidebar>
   <div class="container">
-    <h1>Welcome to you personal account</h1>
+    <h1 class="header">Welcome to you personal account</h1>
+    <wallet-chart></wallet-chart>
   </div>
   
   
@@ -9,7 +10,8 @@
 
 <script>
 
-import sidebar from '@/components/AccountComponents/SidebarComponents/Sidebar.vue'
+import Sidebar from '@/components/AccountComponents/SidebarComponents/Sidebar.vue'
+import WalletChart from '@/components/AccountComponents/WalletChart.vue'
 
 export default {
   data() {
@@ -18,7 +20,8 @@ export default {
     }
   },
   components: {
-    sidebar
+    Sidebar,
+    WalletChart
   },
 }
 </script>
