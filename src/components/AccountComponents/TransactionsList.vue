@@ -20,30 +20,35 @@ export default {
       transactions:  [
           {
             id: '1',
+            type: 'Input',
             curency: 'Bitcoin',
             date: '12.07.2022 9:16',
             value: '0.0002',
           },
           {
             id: '2',
+            type: 'Output',
             curency: 'Litecoin',
             date: '13.07.2022 12:34',
             value: '1.2',
           },
           {
             id: '3',
+            type: 'Input',
             curency: 'Bitcoin',
             date: '14.07.2022 13:31',
             value: '0.23',
           },
           {
             id: '4',
+            type: 'Input',
             curency: 'Ethereum',
             date: '15.07.2022 14:25',
             value: '0.23452',
           },
           {
             id: '5',
+            type: 'Output',
             curency: 'MoonLight',
             date: '16.07.2022 19:34',
             value: '1234.45',

@@ -2,6 +2,7 @@
   <li class="transaction-wrapper">
     <div class="transaction">
       <div class="transcation-id">#{{ transaction.id }}</div>
+      <div class="transcation-id">type: {{ transaction.type }}</div>
       <div class="transaction-content">
         <div class="transaction-data">
           <div class="transaction-text">Curency: {{ transaction.curency }}</div>

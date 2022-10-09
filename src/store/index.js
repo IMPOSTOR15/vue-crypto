@@ -42,10 +42,9 @@ export default createStore({
           default:
             alert("Something went wrong")
         }
-
         return
       }
-
+      console.log("user id: " + auth.currentUser.uid);
       commit('SET_USER', auth.currentUser)
       router.push('/')
     },
