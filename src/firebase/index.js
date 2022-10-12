@@ -17,19 +17,8 @@ const auth = getAuth(app);
 const db = getFirestore(app);
 
 
-// const TransactionsRef = collection(db, "transactions");
-
-// await setDoc(doc(TransactionsRef, "SF"), {
-//   name: "San Francisco", state: "CA", country: "USA",
-//   capital: false, population: 860000,
-//   regions: ["west_coast", "norcal"] });
-
-
-// const transactionCollection = db.collection('users_transactions')
-
 export {
   app,
   auth,
   db,
-  //transactionCollection 
 }
