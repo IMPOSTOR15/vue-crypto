@@ -1,8 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth"
 import { getFirestore } from "firebase/firestore";
-import { collection, addDoc } from "firebase/firestore"; 
-import firebase from 'firebase/compat/app';
 
 const firebaseConfig = {
   apiKey: "AIzaSyCVm2OYd2ltb1cmc6BOKbdtpqSFOe0YxyA",
@@ -16,10 +14,22 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
-
 const db = getFirestore(app);
+
+
+// const TransactionsRef = collection(db, "transactions");
+
+// await setDoc(doc(TransactionsRef, "SF"), {
+//   name: "San Francisco", state: "CA", country: "USA",
+//   capital: false, population: 860000,
+//   regions: ["west_coast", "norcal"] });
+
+
 // const transactionCollection = db.collection('users_transactions')
 
-export { auth, 
+export {
+  app,
+  auth,
+  db,
   //transactionCollection 
 }

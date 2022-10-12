@@ -1,15 +1,16 @@
 <template>
   <li class="transaction-wrapper">
     <div class="transaction">
-      <div class="transcation-id">#{{ transaction.id }}</div>
-      <div class="transcation-id">type: {{ transaction.type }}</div>
+      <!-- <div class="transcation-id">#{{ transaction.userId }}</div> -->
+      <div class="transcation-id">#{{ transaction.transactionContent.id }}</div>
+      <div class="transcation-id">type: {{ transaction.transactionContent.type }}</div>
       <div class="transaction-content">
         <div class="transaction-data">
-          <div class="transaction-text">Curency: {{ transaction.curency }}</div>
-          <div class="transaction-text">Transaction time: {{ transaction.date }}</div>
+          <div class="transaction-text">Curency: {{ transaction.transactionContent.curency }}</div>
+          <div class="transaction-text">Transaction time: {{ transaction.transactionContent.date }}</div>
         </div>
         <div class="transaction-value">
-          <span>Amount: {{ transaction.value }}</span>
+          <span>Amount: {{ transaction.transactionContent.value }}</span>
         </div>
       </div>
     </div>

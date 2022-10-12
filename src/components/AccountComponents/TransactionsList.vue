@@ -1,15 +1,13 @@
 <template>
-  <!-- <select v-model="sortBy">
-    <option value="date">Sort by date</option>
-    <option value="value">Sort by value</option>
-  </select> -->
+  <button class="button" @click="getTransactions">See</button>
   <ul class="transactions-wrapper">
     <transaction-content v-for="transaction in transactions" :key="transaction.id" :transaction="transaction" />
   </ul>
 </template>
 
 <script>
-import { ref, computed } from 'vue'
+import { collection, addDoc, getDoc, getDocs, query, where } from "firebase/firestore"
+import { db, auth,} from '@/firebase/'
 import TransactionContent from '@/components/AccountComponents/TransactionContent.vue'
 export default {
   components: {
@@ -17,56 +15,53 @@ export default {
     },
   data() {
     return{
-      transactions:  [
-          {
-            id: '1',
-            type: 'Input',
-            curency: 'Bitcoin',
-            date: '12.07.2022 9:16',
-            value: '0.0002',
-          },
-          {
-            id: '2',
-            type: 'Output',
-            curency: 'Litecoin',
-            date: '13.07.2022 12:34',
-            value: '1.2',
-          },
-          {
-            id: '3',
-            type: 'Input',
-            curency: 'Bitcoin',
-            date: '14.07.2022 13:31',
-            value: '0.23',
-          },
-          {
-            id: '4',
-            type: 'Input',
-            curency: 'Ethereum',
-            date: '15.07.2022 14:25',
-            value: '0.23452',
-          },
-          {
-            id: '5',
-            type: 'Output',
-            curency: 'MoonLight',
-            date: '16.07.2022 19:34',
-            value: '1234.45',
-          }
-      ]
+      currentUserID: '',
+      transactions:  []
+    }
+  },
+  created() {
+    // this.addTransaction()
+    // currentUserID = auth.currentUser.uid
+  },
+  methods: {
+    async addTransaction() {
+      // 'users' collection reference
+      const transactionsRef = collection(db, 'transactions')
+      //data to push
+      const dataObj = {
+        userId: auth.currentUser.uid,
+        transactionContent: {
+          id: '1',
+          type: 'Input',
+          curency: 'Bitcoin',
+          date: '12.07.2022 9:16',
+          value: '0.0002',
+        }
+      }
+
+      // create document and return reference to it
+      const docRef = await addDoc(transactionsRef, dataObj)
+
+      // access auto-generated ID with '.id'
+      console.log('Document was created with ID:', docRef.id)
+    },
+    async getTransactions() {
+
+      // query to get all docs in 'transactions' collection
+      console.log(auth.currentUser.uid);
+      const q = await query(collection(db, 'transactions'), where('userId', '==', auth.currentUser.uid));
+      const querySnap = await getDocs(q);
+      
+
+      // add each doc to 'transactions' array
+      this.transactions = []
+      querySnap.forEach((doc) => {
+        this.transactions.push(doc.data())
+        console.log(this.transactions)
+      })
+
     }
   }
-
-  // setup({ items }) {
-  //   const sortBy = 'data'
-  //   const sorteredTransactions = computed(() => {
-  //     return transactions.sort((a, b) => {
-  //       if (a[sortBy.value] > b[sortBy.value]) return -1
-  //       if (a[sortBy.value] < b[sortBy.value]) return 1
-  //     })
-  //   })
-  //   return { sortBy, sorteredItems }
-  // }
 }
 </script>
 
