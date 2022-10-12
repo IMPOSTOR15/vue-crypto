@@ -6,14 +6,17 @@
       <wallet-chart></wallet-chart>
       <div class="button-row">
         <button class="button" @click="showModal = true">Send Crypto</button>
-        <button class="button">Show Wallet</button>
-        <button class="button">Show Transactions</button>
-        <send-window v-show="showModal" @close-modal="showModal = false"></send-window>
+        <button class="button" @click="walletShow">Show Wallet</button>
+        <button class="button" @click="transactionShow">Show Transactions</button>
       </div>
-      <div class="transactions-list">
+      <div v-if="showTransactions" class="transactions-list">
         <transaction-list></transaction-list>
       </div>
+      <div v-if="showWallet" class="wallet-list">
+        <wallet-list></wallet-list>
+      </div>
     </div>
+    <send-window v-show="showModal" @close-modal="showModal = false"></send-window>
   </div>
   
   
@@ -24,19 +27,33 @@ import TransactionList from '@/components/AccountComponents/TransactionsList.vue
 import Sidebar from '@/components/AccountComponents/SidebarComponents/Sidebar.vue'
 import WalletChart from '@/components/AccountComponents/WalletChart.vue'
 import SendWindow from '@/components/AccountComponents/SendWindow.vue'
+import WalletList from '@/components/AccountComponents/WalletList.vue'
 
 export default {
   data() {
     return {
       showModal: false,
+      showWallet: true,
+      showTransactions: false,
     }
   },
   components: {
     Sidebar,
     WalletChart,
     TransactionList,
-    SendWindow
+    SendWindow,
+    WalletList
   },
+  methods: {
+    walletShow() {
+      this.showWallet = true
+      this.showTransactions = false
+    },
+    transactionShow() {
+      this.showWallet = false
+      this.showTransactions = true
+    }
+  }
 }
 </script>
 

@@ -92,9 +92,7 @@ export default {
           value: this.CountOfCoinToSend,
         }
       }
-      console.log(dataObjSender);
       const docRef = await addDoc(transactionsRef, dataObjSender)
-      console.log('Document was created with ID:', docRef.id)
     },
     async reciveCoin(transactionDate, transactionId) {
       const transactionsRef = collection(db, 'transactions')
@@ -109,9 +107,7 @@ export default {
           value: this.CountOfCoinToSend,
         }
       }
-      console.log(dataObjRecipient);
       const docRef = await addDoc(transactionsRef, dataObjRecipient)
-      console.log('Document was created with ID:', docRef.id)
     }
   }
 }

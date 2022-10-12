@@ -1,64 +1,48 @@
 <template>
-  <button class="button" @click="getTransactions">See</button>
-  <ul class="transactions-wrapper">
-    <transaction-content v-for="transaction in transactions" :key="transaction.id" :transaction="transaction" />
-  </ul>
+  <div class="transactions-elements">
+    <button class="button" @click="getTransactions">Refresh</button>
+    <loading-indicator class="loadingIndicator" v-if="loadingCheck"></loading-indicator>
+    <ul v-else class="transactions-wrapper">
+      <transaction-content v-for="transaction in transactions" :key="transaction.id" :transaction="transaction" />
+    </ul>
+  </div>
 </template>
 
 <script>
-import { collection, addDoc, getDoc, getDocs, query, where } from "firebase/firestore"
+import { collection, getDocs, query, where } from "firebase/firestore"
 import { db, auth,} from '@/firebase/'
 import TransactionContent from '@/components/AccountComponents/TransactionContent.vue'
+import LoadingIndicator from '@/components/LoadingIndicator.vue'
 export default {
   components: {
-    TransactionContent 
+    TransactionContent,
+    LoadingIndicator
     },
   data() {
     return{
       currentUserID: '',
-      transactions:  []
+      transactions:  [],
+
+      loadingCheck: true,
     }
   },
   created() {
-    // this.addTransaction()
-    // currentUserID = auth.currentUser.uid
+    this.getTransactions()
   },
   methods: {
-    async addTransaction() {
-      // 'users' collection reference
-      const transactionsRef = collection(db, 'transactions')
-      //data to push
-      const dataObj = {
-        userId: auth.currentUser.uid,
-        transactionContent: {
-          id: '1',
-          type: 'Input',
-          curency: 'Bitcoin',
-          date: '12.07.2022 9:16',
-          value: '0.0002',
-        }
-      }
-
-      // create document and return reference to it
-      const docRef = await addDoc(transactionsRef, dataObj)
-
-      // access auto-generated ID with '.id'
-      console.log('Document was created with ID:', docRef.id)
-    },
     async getTransactions() {
-
+      this.loadingCheck = true
       // query to get all docs in 'transactions' collection
-      console.log(auth.currentUser.uid);
       const q = await query(collection(db, 'transactions'), where('userId', '==', auth.currentUser.uid));
       const querySnap = await getDocs(q);
       
-
-      // add each doc to 'transactions' array
       this.transactions = []
       querySnap.forEach((doc) => {
         this.transactions.push(doc.data())
         console.log(this.transactions)
       })
+
+      this.loadingCheck = false
 
     }
   }
@@ -69,5 +53,16 @@ export default {
 .transactions-wrapper {
   list-style-type: none;
   padding: 0;
+}
+.transactions-elements {
+  display: flex;
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  justify-content: center;
+  flex-direction: column;
+}
+.loadingIndicator {
+  margin-top: 10%;
 }
 </style>

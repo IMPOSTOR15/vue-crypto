@@ -6,6 +6,7 @@ import {
     signInWithEmailAndPassword,
     signOut 
   } from 'firebase/auth'
+  import { collection, addDoc, getDoc, getDocs, query, where } from "firebase/firestore"
 
 export default createStore({
   state: {
@@ -45,7 +46,6 @@ export default createStore({
         }
         return
       }
-      console.log("user id: " + auth.currentUser.uid);
       commit('SET_USER', auth.currentUser)
       router.push('/')
     },
@@ -77,6 +77,27 @@ export default createStore({
       }
 
       commit('SET_USER', auth.currentUser)
+      //Add walletDataset
+      const coinsRef = collection(db, 'coins')
+      //data to push
+      const userCoins = {
+        userId: auth.currentUser.uid,
+        coins: {
+          bitcoin: {
+            amount: "0",
+            name: "Bitcoin",
+          },
+          ethereum: {
+            amount: "0",
+            name: "Ethereum",
+          },
+          litecoin: {
+            amount: "0",
+            name: "Litecoin",
+          }
+        }
+      }
+      const docRef = await addDoc(coinsRef, userCoins)
       router.push('/')
     },
 

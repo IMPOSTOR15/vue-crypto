@@ -14,6 +14,8 @@ export default {
     position: relative;
     width: 80px;
     height: 80px;
+    margin-left: auto;
+    margin-right: auto;
   }
   .lds-ring div {
     box-sizing: border-box;
