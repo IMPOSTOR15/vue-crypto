@@ -11,10 +11,22 @@
           <div class="section">
             <label>Cyrency to send</label>
             <select name="input" v-model="currencyToSend">
-              <option value="MoonLight">MoonLight</option>
-              <option value="Bitcoin">Bitcoin</option>
-              <option value="Ethereum">Ethereum</option>
-              <option value="Litecoin">Litecoin</option>
+              <option 
+                v-if="checkCoins('MoonLight')"
+                value="MoonLight"
+              >MoonLight</option>
+              <option 
+                v-if="checkCoins('Bitcoin')"
+                value="Bitcoin"
+              >Bitcoin</option>
+              <option
+                v-if="checkCoins('Ethereum')"
+                value="Ethereum"
+              >Ethereum</option>
+              <option
+                v-if="checkCoins('Litecoin')"
+                value="Litecoin"
+              >Litecoin</option>
             </select>
           </div>
           <div class="section">
@@ -30,7 +42,7 @@
 </template>
 
 <script>
-import { collection, addDoc, getDoc, getDocs, query, where } from "firebase/firestore"
+import { collection, addDoc, getDocs, query, where } from "firebase/firestore"
 import { db, auth,} from '@/firebase/'
 
 export default {
@@ -49,6 +61,8 @@ export default {
       year: '',
       hour: '',
       minutes: '',
+
+      coins: [],
 
       
     }
@@ -109,7 +123,30 @@ export default {
         }
       }
       await addDoc(transactionsRef, dataObjRecipient)
+    },
+    async getCoins() {
+      this.loadingCheck = true
+      console.log(auth.currentUser.uid)
+      const q = await query(collection(db, 'coins'), where('userId', '==', auth.currentUser.uid));
+      const querySnap = await getDocs(q);
+      this.coins = []
+      querySnap.forEach((doc) => {
+        this.coins.push(doc.data())
+      })
+      this.loadingCheck = false
+    },
+    checkCoins(coinName) {
+      for (let i = 0; i < this.coins.length; i++) {
+        if (this.coins[i].curencyContent.name === coinName && this.coins[i].curencyContent.value > 0) {
+          return true
+        }
+      }
+      return false
     }
+  },
+  created() {
+    this.getCoins()
+    
   }
 }
 </script>

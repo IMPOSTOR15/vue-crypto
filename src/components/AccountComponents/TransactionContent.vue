@@ -1,9 +1,12 @@
 <template>
   <li class="transaction-wrapper">
     <div class="transaction">
-      <!-- <div class="transcation-id">#{{ transaction.userId }}</div> -->
       <div class="transcation-id">#{{ transaction.transactionContent.id }}</div>
-      <div class="transcation-id">type: {{ transaction.transactionContent.type }}</div>
+      <div class="transcation-id">
+        type: {{ transaction.transactionContent.type }}
+        <img v-if="transaction.transactionContent.type === 'Output'" class="transaction-arrow" src="@\assets\arrows\arrow_bottom.svg" alt="">
+        <img v-if="transaction.transactionContent.type === 'Input'" class="transaction-arrow" src="@\assets\arrows\arrow_top.svg" alt="">
+      </div>
       <div class="transaction-content">
         <div class="transaction-data">
           <div class="transaction-text">Curency: {{ transaction.transactionContent.curency }}</div>
@@ -47,5 +50,9 @@ export default {
 }
 .transaction-text {
   margin-right: 40px;
+}
+.transaction-arrow {
+  width: 40px;
+  rotate: 180deg;
 }
 </style>

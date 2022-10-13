@@ -1,5 +1,5 @@
 <template>
-  <li class="wallet-wrapper">
+  <li v-if="coin.curencyContent.value > 0" class="wallet-wrapper">
     <div class="coins">
       <div class="cyrency">
         <img class="curencyLogo" :src=coin.curencyContent.logoLink alt="">
