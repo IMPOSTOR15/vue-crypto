@@ -34,6 +34,8 @@ export default {
   border-radius: 40px;
   box-shadow: 0 0 5px 2px rgb(0, 166, 255);
   margin: 30px;
+  background: rgb(2,0,36);
+  background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(15,15,89,1) 51%, rgba(0,0,0,1) 100%);
 }
 .transaction {
   text-align: left;

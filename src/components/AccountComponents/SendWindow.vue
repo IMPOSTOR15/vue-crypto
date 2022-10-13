@@ -12,8 +12,9 @@
             <label>Cyrency to send</label>
             <select name="input" v-model="currencyToSend">
               <option value="MoonLight">MoonLight</option>
-              <option value="BTC">Bitcoin</option>
-              <option value="ETH">Ethereum</option>
+              <option value="Bitcoin">Bitcoin</option>
+              <option value="Ethereum">Ethereum</option>
+              <option value="Litecoin">Litecoin</option>
             </select>
           </div>
           <div class="section">
@@ -41,7 +42,7 @@ export default {
       CountOfCoinToSend: 0,
       CoinCheck: false,
 
-      dateStrung: '',
+      dateString: '',
       nowDate: 0,
       day: '',
       month: '',
@@ -75,10 +76,10 @@ export default {
       this.GetDateString()
       const transactionDate = this.dateString
       const transactionId = Math.round(1000000000 + Math.random() * (9999999999 - 1000000000))
-      this.SendCoin(transactionDate, transactionId)
-      this.reciveCoin(transactionDate, transactionId)
+      this.SendTransaction(transactionDate, transactionId)
+      this.reciveTransaction(transactionDate, transactionId)
     },
-    async SendCoin(transactionDate, transactionId) {
+    async SendTransaction(transactionDate, transactionId) {
       // 'users' collection reference
       const transactionsRef = collection(db, 'transactions')
       //data to push
@@ -92,9 +93,9 @@ export default {
           value: this.CountOfCoinToSend,
         }
       }
-      const docRef = await addDoc(transactionsRef, dataObjSender)
+      await addDoc(transactionsRef, dataObjSender)
     },
-    async reciveCoin(transactionDate, transactionId) {
+    async reciveTransaction(transactionDate, transactionId) {
       const transactionsRef = collection(db, 'transactions')
       //data to push
       const dataObjRecipient = {
@@ -107,7 +108,7 @@ export default {
           value: this.CountOfCoinToSend,
         }
       }
-      const docRef = await addDoc(transactionsRef, dataObjRecipient)
+      await addDoc(transactionsRef, dataObjRecipient)
     }
   }
 }

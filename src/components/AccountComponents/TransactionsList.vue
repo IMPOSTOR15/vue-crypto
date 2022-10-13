@@ -64,5 +64,6 @@ export default {
 }
 .loadingIndicator {
   margin-top: 10%;
+  padding-bottom: 200px;
 }
 </style>

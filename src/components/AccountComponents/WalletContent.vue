@@ -1,17 +1,19 @@
 <template>
   <li class="wallet-wrapper">
     <div class="coins">
-      <!-- <div class="coin-id">#{{ transaction.transactionContent.id }}</div> -->
-      <!-- <div class="coin-id">type: {{ transaction.transactionContent.type }}</div> -->
-      <div class="coin-content">
-        <div class="coin-data">
-          <!-- <div class="coin-text">Curency: {{ transaction.transactionContent.curency }}</div> -->
-          <!-- <div class="coin-text">Transaction time: {{ transaction.transactionContent.date }}</div> -->
-        </div>
-        <div class="coin-value">
-          <!-- <span>Amount: {{ transaction.transactionContent.value }}</span> -->
+      <div class="cyrency">
+        <img class="curencyLogo" :src=coin.curencyContent.logoLink alt="">
+        <div class="coin-id">
+          <h1 class="text50">
+            {{ coin.curencyContent.name }}
+          </h1>
         </div>
       </div>
+      <div class="balance-wrap">
+        <h2 class="balance text50">{{ coin.curencyContent.value }}</h2>
+        <!-- <h2 class="balance text50">0.12312354512342344435</h2> -->
+      </div>
+      
     </div>
   </li>
 </template>
@@ -19,9 +21,14 @@
 <script>
 export default {
   props: {
-    transaction: {
+    coin: {
       type: Object,
       reqired: true
+    }
+  },
+  data() {
+    return {
+
     }
   }
 }
@@ -33,10 +40,18 @@ export default {
   border-radius: 40px;
   box-shadow: 0 0 5px 2px rgb(0, 166, 255);
   margin: 30px;
+  background: rgb(2,0,36);
+  background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(15,15,89,1) 51%, rgba(0,0,0,1) 100%);
 }
 .coins {
+  height: 50px;
   text-align: left;
   padding-left: 40px;
+  display: flex;
+  flex-direction: row;
+  padding-top: 8px;
+  padding-bottom: 10px;
+  justify-content: space-between;
 }
 .coin-data {
   display: flex;
@@ -44,5 +59,31 @@ export default {
 }
 .coin-text {
   margin-right: 40px;
+}
+.cyrency {
+  display: flex;
+  flex-direction: row;
+}
+.curencyLogo {
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
+  margin-right: 30px;
+}
+.coin-id {
+  padding-bottom:40px;
+}
+.balance-wrap {
+  border: 2px rgb(0, 166, 255) solid;
+  border-radius: 15px;
+  width: 300px;
+  height: 50px;
+  margin-right: 20px;
+}
+.balance {
+  margin-top: 14px;
+  margin-bottom: 14px;
+  margin-right: 5px;
+  text-align: right;
 }
 </style>

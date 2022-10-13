@@ -80,24 +80,42 @@ export default createStore({
       //Add walletDataset
       const coinsRef = collection(db, 'coins')
       //data to push
-      const userCoins = {
+      const userCoinsВitcoin = {
         userId: auth.currentUser.uid,
-        coins: {
-          bitcoin: {
-            amount: "0",
-            name: "Bitcoin",
-          },
-          ethereum: {
-            amount: "0",
-            name: "Ethereum",
-          },
-          litecoin: {
-            amount: "0",
-            name: "Litecoin",
-          }
+        curencyContent: {
+          logoLink: 'https://cryptologos.cc/logos/bitcoin-btc-logo.png?v=023',
+          name: 'Bitcoin',
+          value: 0
         }
       }
-      const docRef = await addDoc(coinsRef, userCoins)
+      const userCoinsEthereum = {
+        userId: auth.currentUser.uid,
+        curencyContent: {
+          logoLink: 'https://cdn.worldvectorlogo.com/logos/ethereum-eth.svg',
+          name: 'Ethereum',
+          value: 0
+        }
+      }
+      const userCoinsLitecoin = {
+        userId: auth.currentUser.uid,
+        curencyContent: {
+          logoLink: 'https://logojinni.com/image/logos/litecoin-690.svg',
+          name: 'Litecoin',
+          value: 0
+        }
+      }
+      const userCoinsMoonLight = {
+        userId: auth.currentUser.uid,
+        curencyContent: {
+          logoLink: 'https://avatars.mds.yandex.net/i?id=9263e29ec040d3d133b84c8e314366b7-5420588-images-thumbs&n=13',
+          name: 'MoonLight',
+          value: 0
+        }
+      }
+      await addDoc(coinsRef, userCoinsВitcoin)
+      await addDoc(coinsRef, userCoinsEthereum)
+      await addDoc(coinsRef, userCoinsLitecoin)
+      await addDoc(coinsRef, userCoinsMoonLight)
       router.push('/')
     },
 
