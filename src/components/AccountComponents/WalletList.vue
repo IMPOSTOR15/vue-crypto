@@ -1,11 +1,16 @@
 <template>
   <div class="wallet-elements">
-    <button class="button" @click="getCoins">Refresh</button>
-    <p>Your adress: {{walletAdress}}</p>
+    <div class="button-row">
+      <button class="button" @click="showModalSend = true">Send Crypto</button>
+      <button class="button" @click="showModalRecive = true">Recive Crypto</button>
+      <button class="button" @click="getCoins">Refresh</button>
+    </div>
     <loading-indicator class="loadingIndicator" v-if="loadingCheck"></loading-indicator>
     <ul v-else class="wallet-wrapper">
       <wallet-content v-for="coin in coins" :key="coin.id" :coin="coin" />
     </ul>
+    <send-window v-show="showModalSend" @close-modal="showModalSend = false"></send-window>
+    <recive-window v-show="showModalRecive" @close-modal="showModalRecive = false"></recive-window>
   </div>
 </template>
 
@@ -14,18 +19,23 @@ import { collection, getDocs, query, where, updateDoc, doc } from "firebase/fire
 import { db, auth,} from '@/firebase/'
 import WalletContent from '@/components/AccountComponents/WalletContent.vue'
 import LoadingIndicator from '@/components/LoadingIndicator.vue'
+import SendWindow from '@/components/AccountComponents/SendWindow.vue'
+import ReciveWindow from '@/components/AccountComponents/ReciveWindow.vue'
 
 export default {
   components: {
     WalletContent,
-    LoadingIndicator
+    LoadingIndicator,
+    SendWindow,
+    ReciveWindow
     },
   data() {
     return{
+      showModalSend: false,
+      showModalRecive: false,
+
       currentUserID: '',
       coins: [],
-
-      walletAdress: auth.currentUser.uid,
 
       loadingCheck: true,
     }
@@ -49,7 +59,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .wallet-wrapper {
   list-style-type: none;
   padding: 0;
@@ -65,5 +75,16 @@ export default {
 .loadingIndicator {
   margin-top: 10%;
   padding-bottom: 100px;
+}
+.button-row {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  justify-content: center;
+}
+.button {
+  align-self: center;
+  display: block;
+  width: 200px
 }
 </style>

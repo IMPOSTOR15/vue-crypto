@@ -92,6 +92,11 @@ export default {
       const transactionId = Math.round(1000000000 + Math.random() * (9999999999 - 1000000000))
       this.SendTransaction(transactionDate, transactionId)
       this.reciveTransaction(transactionDate, transactionId)
+      this.userAdress = ''
+      this.currencyToSend = ''
+      this.CountOfCoinToSend = 0
+      $emit('close-modal')
+
     },
     async SendTransaction(transactionDate, transactionId) {
       // 'users' collection reference
@@ -166,6 +171,7 @@ export default {
   padding: 100px 40px;
   border-radius: 20px;
 }
+
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -177,14 +183,6 @@ export default {
   background-color: #000000da;
 }
 
-.close {
-  margin: 10% 0 0 16px;
-  cursor: pointer;
-}
-
-.close-img {
-  width: 25px;
-}
 .section {
   position: relative;
   display: flex;

@@ -1,39 +1,20 @@
 <template>
-  <!-- <li class="transaction-wrapper">
-    <div class="transaction">
-      <div class="transcation-id">#{{ transaction.transactionContent.id }}</div>
-      <div class="transcation-id">
-        type: {{ transaction.transactionContent.type }}
-        <img v-if="transaction.transactionContent.type === 'Output'" class="transaction-arrow" src="@\assets\arrows\arrow_bottom.svg" alt="">
-        <img v-if="transaction.transactionContent.type === 'Input'" class="transaction-arrow" src="@\assets\arrows\arrow_top.svg" alt="">
-      </div>
-      <div class="transaction-content">
-        <div class="transaction-data">
-          <div class="transaction-text">Curency: {{ transaction.transactionContent.curency }}</div>
-          <div class="transaction-text">Transaction time: {{ transaction.transactionContent.date }}</div>
-        </div>
-        <div class="transaction-value">
-          <span>Amount: {{ transaction.transactionContent.value }}</span>
-        </div>
-      </div>
-    </div>
-  </li> -->
   <li class="transaction-wrapper">
     <div class="transaction-container">
       <div class="transaction-half">
         <div class="transaction-info">
-          <div class="arrow-sapce">
-            <img v-if="transaction.transactionContent.type === 'Output'" class="transaction-arrow" src="@\assets\arrows\arrow_bottom.svg" alt="">
-            <img v-if="transaction.transactionContent.type === 'Input'" class="transaction-arrow" src="@\assets\arrows\arrow_top.svg" alt="">
-          </div>
+          <img v-if="transaction.transactionContent.type === 'Output'" class="transaction-arrow" src="@\assets\arrows\arrow_bottom.svg" alt="">
+          <img v-if="transaction.transactionContent.type === 'Input'" class="transaction-arrow" src="@\assets\arrows\arrow_top.svg" alt="">
           <div class="transaction-content">
-            <div class="transaction-text">Curency: {{ transaction.transactionContent.curency }}</div>
+            <div class="transaction-text">
+              <p>{{ transaction.transactionContent.curency }}</p>
+            </div>
             <div class="transaction-value">
               <p>Amount: {{ transaction.transactionContent.value }}</p>
             </div>
           </div>
         </div>
-        <button class="button" @click="showMore = !showMore">Show more</button>
+        <button class="more-button" @click="showMore = !showMore">Show more</button>
       </div>
       <div class="transaction-full" v-if="showMore">
         <p>Transaction time: {{ transaction.transactionContent.date }}</p>
@@ -60,6 +41,12 @@ export default {
 </script>
 
 <style scoped>
+p {
+  margin: 0px;
+  padding-top: 12px;
+  text-align: left;
+  font-size: 20px;
+}
 .transaction-wrapper {
   border: 2px solid rgb(0, 166, 255);
   border-radius: 40px;
@@ -76,30 +63,63 @@ export default {
   display: flex;
   flex-direction: row;
 }
-.transaction-text {
-  margin-right: 40px;
-}
+
 .transaction-arrow {
-  width: 40px;
+  height: 50px;
   rotate: 180deg;
 }
-
+.transaction-text {
+  margin-left: 40px;
+  font-weight: bold;
+}
+.transaction-value {
+  margin-left: 40px;
+}
 .transaction-half {
   display: flex;
   flex-direction: row;
-  padding: 20px 20px 0px 20px;
 }
 
 .button {
-  margin-top: -5px;
   margin-bottom: 10px;
-  /* align-self: flex-end; */
 }
 .transaction-half {
   justify-content: space-between;
 }
 .transaction-info {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  padding-left: 20px;
+  padding-top: 15px;
+}
+.transaction-content {
+  display: flex;
+  flex-direction: row;
+}
+.transaction-full {
+  margin-left: 110px;
+  margin-bottom: 10px;
+}
+.more-button {
+    margin-right: 15px;
+    margin-top: 18px;
+    margin-bottom: 22px;
+    padding: 8px 16px;
+    border: 0px rgb(0, 166, 255) solid;
+    border-radius: 28px;
+    background-color: rgba(0, 166, 255, 0);
+    font-size: 18px;
+    line-height: 21px;
+    font-weight: 500;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    color: #a9e2ff;
+    transition: background 0.5s ease-out;
+    }
+
+.more-button:hover {
+    background-color: rgba(0, 166, 255, 1);
+    color: #fff
 }
 </style>

@@ -5,7 +5,6 @@
     <div class="wallet-space">
       <wallet-chart></wallet-chart>
       <div class="button-row">
-        <button class="button" @click="showModal = true">Send Crypto</button>
         <button class="button" @click="walletShow">Show Wallet</button>
         <button class="button" @click="transactionShow">Show Transactions</button>
       </div>
@@ -16,7 +15,6 @@
         <wallet-list></wallet-list>
       </div>
     </div>
-    <send-window v-show="showModal" @close-modal="showModal = false"></send-window>
   </div>
   
   
@@ -26,7 +24,6 @@
 import TransactionList from '@/components/AccountComponents/TransactionsList.vue'
 import Sidebar from '@/components/AccountComponents/SidebarComponents/Sidebar.vue'
 import WalletChart from '@/components/AccountComponents/WalletChart.vue'
-import SendWindow from '@/components/AccountComponents/SendWindow.vue'
 import WalletList from '@/components/AccountComponents/WalletList.vue'
 
 export default {
@@ -41,7 +38,6 @@ export default {
     Sidebar,
     WalletChart,
     TransactionList,
-    SendWindow,
     WalletList
   },
   methods: {

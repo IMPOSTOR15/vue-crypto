@@ -8,7 +8,7 @@ export default {
   
   data() {
     return {
-      series: [44, 55, 41, 123],
+      series: [44, 55, 41, 100],
       options: {
         labels: ['Bitcoin', 'Litecoin', 'Ethereum', 'MoonLight'],
         pie: {
@@ -22,11 +22,15 @@ export default {
         colors:['#f7931a', '#c4c8c8', '#8590f9', '#1e9eec'],
         stroke:{
          colors:['#000'],
-         width: '8'
+         width: '7',
+         opacity: '0'
         },
 
       },
     }
+  },
+  methods: {
+
   }
 }
 </script>
