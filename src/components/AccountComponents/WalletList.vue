@@ -46,13 +46,14 @@ export default {
   methods: {
     async getCoins() {
       this.loadingCheck = true
-      console.log(auth.currentUser.uid)
+
       const q = await query(collection(db, 'coins'), where('userId', '==', auth.currentUser.uid));
       const querySnap = await getDocs(q);
       this.coins = []
       querySnap.forEach((doc) => {
         this.coins.push(doc.data())
       })
+      
       this.loadingCheck = false
     },
   }

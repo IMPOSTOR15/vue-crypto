@@ -2,7 +2,10 @@
   <div class="modal-overlay" @click="$emit('close-modal')">
     <div class="modal" @click.stop>
       <h6 class="text50">Send crypto to MoonLight user</h6>
-      <form @submit.prevent="createTransaction">
+      <div v-if="loadingCheck" class="loadingIndicator">
+        <loading-indicator></loading-indicator>
+      </div>
+      <form v-else @submit.prevent="createTransaction">
         <div class="column">
           <div class="section">
             <label>Address to send</label>
@@ -42,12 +45,17 @@
 </template>
 
 <script>
-import { collection, addDoc, getDocs, query, where } from "firebase/firestore"
+import LoadingIndicator from '@/components/LoadingIndicator.vue'
+import { collection, doc, addDoc, getDocs, updateDoc, query, where } from "firebase/firestore"
 import { db, auth,} from '@/firebase/'
 
 export default {
+  components: {
+    LoadingIndicator
+  },
   data() {
     return {
+      loadingCheck: false,
 
       userAdress: '',
       currencyToSend: '',
@@ -63,7 +71,8 @@ export default {
       minutes: '',
 
       coins: [],
-
+      changeCoin: [],
+      newCoinValue: 0,
       
     }
   },
@@ -86,17 +95,20 @@ export default {
       }
       this.dateString = this.day + '.' + this.month + '.' + this.year + ' ' + this.hour + ':' + this.minutes
     },
-    createTransaction() {
+    async createTransaction() {
+      this.loadingCheck = true
       this.GetDateString()
       const transactionDate = this.dateString
       const transactionId = Math.round(1000000000 + Math.random() * (9999999999 - 1000000000))
-      this.SendTransaction(transactionDate, transactionId)
-      this.reciveTransaction(transactionDate, transactionId)
+      await this.SendTransaction(transactionDate, transactionId)
+      await this.reciveTransaction(transactionDate, transactionId)
+      await this.removeCoins()
+      await this.addCoins()
       this.userAdress = ''
       this.currencyToSend = ''
       this.CountOfCoinToSend = 0
-      $emit('close-modal')
-
+      this.loadingCheck = false
+      this.$emit('close-modal')
     },
     async SendTransaction(transactionDate, transactionId) {
       // 'users' collection reference
@@ -130,15 +142,54 @@ export default {
       await addDoc(transactionsRef, dataObjRecipient)
     },
     async getCoins() {
-      this.loadingCheck = true
-      console.log(auth.currentUser.uid)
       const q = await query(collection(db, 'coins'), where('userId', '==', auth.currentUser.uid));
       const querySnap = await getDocs(q);
       this.coins = []
       querySnap.forEach((doc) => {
         this.coins.push(doc.data())
       })
-      this.loadingCheck = false
+    },
+    async addCoins() {
+      const q = await query(collection(db, 'coins'),
+        where('userId', '==', this.userAdress),
+        where('curencyContent.name', '==', this.currencyToSend)
+      );
+      const querySnap = await getDocs(q);
+      this.changeCoin = []
+      querySnap.forEach((doc) => {
+        this.changeCoin.push(doc.data())
+      })
+
+      this.newCoinValue = this.changeCoin[0].curencyContent.value + this.CountOfCoinToSend
+
+      await updateDoc(doc(db, 'coins', querySnap.docs[0].id), {
+        curencyContent: {
+          logoLink: this.changeCoin[0].curencyContent.logoLink,
+          name: this.changeCoin[0].curencyContent.name,
+          value: this.newCoinValue
+        }
+      })
+    },
+    async removeCoins() {
+      const q = await query(collection(db, 'coins'),
+        where('userId', '==', auth.currentUser.uid),
+        where('curencyContent.name', '==', this.currencyToSend)
+      );
+      const querySnap = await getDocs(q);
+      this.changeCoin = []
+      querySnap.forEach((doc) => {
+        this.changeCoin.push(doc.data())
+      })
+
+      this.newCoinValue = this.changeCoin[0].curencyContent.value - this.CountOfCoinToSend
+
+      await updateDoc(doc(db, 'coins', querySnap.docs[0].id), {
+        curencyContent: {
+          logoLink: this.changeCoin[0].curencyContent.logoLink,
+          name: this.changeCoin[0].curencyContent.name,
+          value: this.newCoinValue
+        }
+      })
     },
     checkCoins(coinName) {
       for (let i = 0; i < this.coins.length; i++) {
@@ -221,5 +272,9 @@ select::-ms-expand {
 }
 .select:after {
   justify-self: end;
+}
+.loadingIndicator {
+  margin-top: 150px;
+  margin-bottom: 120px;
 }
 </style>
