@@ -84,22 +84,27 @@ export default createStore({
         userId: auth.currentUser.uid,
         curencyContent: {
           logoLink: 'https://cryptologos.cc/logos/bitcoin-btc-logo.png?v=023',
+          color: '#f7931a',
           name: 'Bitcoin',
-          value: 0
+          value: 0,
+          
         }
       }
       const userCoinsEthereum = {
         userId: auth.currentUser.uid,
         curencyContent: {
           logoLink: 'https://cdn.worldvectorlogo.com/logos/ethereum-eth.svg',
+          color: '#8590f9',
           name: 'Ethereum',
-          value: 0
+          value: 0,
+          
         }
       }
       const userCoinsLitecoin = {
         userId: auth.currentUser.uid,
         curencyContent: {
           logoLink: 'https://logojinni.com/image/logos/litecoin-690.svg',
+          color: '#c4c8c8',
           name: 'Litecoin',
           value: 0
         }
@@ -108,6 +113,7 @@ export default createStore({
         userId: auth.currentUser.uid,
         curencyContent: {
           logoLink: 'https://avatars.mds.yandex.net/i?id=9263e29ec040d3d133b84c8e314366b7-5420588-images-thumbs&n=13',
+          color: '#1e9eec',
           name: 'MoonLight',
           value: 0
         }

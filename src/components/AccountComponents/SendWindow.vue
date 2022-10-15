@@ -9,11 +9,11 @@
         <div class="column">
           <div class="section">
             <label>Address to send</label>
-            <input type="string" name="input" v-model="userAdress" placeholder="" min="0">
+            <input type="string" name="input" v-model="userAdress" required placeholder="">
           </div>
           <div class="section">
             <label>Cyrency to send</label>
-            <select name="input" v-model="currencyToSend">
+            <select name="input" v-model="currencyToSend" required>
               <option 
                 v-if="checkCoins('MoonLight')"
                 value="MoonLight"
@@ -34,7 +34,7 @@
           </div>
           <div class="section">
             <label>Amount of coins to send</label>
-            <input type="number" name="input" v-model="CountOfCoinToSend" placeholder=" " min="0">
+            <input type="number" name="input" step="0.00001" required v-model="CountOfCoinToSend" placeholder=" " min="0">
           </div>
           <button type="submit" class="button">Send</button>
         </div>
@@ -166,7 +166,8 @@ export default {
         curencyContent: {
           logoLink: this.changeCoin[0].curencyContent.logoLink,
           name: this.changeCoin[0].curencyContent.name,
-          value: this.newCoinValue
+          value: this.newCoinValue,
+          color: this.changeCoin[0].curencyContent.color,
         }
       })
     },
@@ -187,7 +188,8 @@ export default {
         curencyContent: {
           logoLink: this.changeCoin[0].curencyContent.logoLink,
           name: this.changeCoin[0].curencyContent.name,
-          value: this.newCoinValue
+          value: this.newCoinValue,
+          color: this.changeCoin[0].curencyContent.color,
         }
       })
     },

@@ -5,10 +5,6 @@
   </div>
 
   <div class="form-section">
-    <!-- <div class="section">
-      <label>Enter days number</label>
-      <input type="number" v-model="days">
-    </div> -->
     <div class="section">
       <label>Chart currency</label>
       <select name="input" v-model="curencyChart">
