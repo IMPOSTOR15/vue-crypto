@@ -39,9 +39,13 @@ import { useStore } from 'vuex'
 export default {
   setup() {
     const store = useStore();
+    const elem = null;
+    const activeElem = null;
 
     return {
       store,
+      elem,
+      activeElem,
       user: store.state.user,
     }
   },

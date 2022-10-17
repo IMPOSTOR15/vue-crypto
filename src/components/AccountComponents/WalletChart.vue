@@ -19,7 +19,7 @@
 <script>
 import LoadingIndicator from '@/components/LoadingIndicator.vue'
 import axios from "axios";
-import { collection, doc, addDoc, getDocs, updateDoc, query, where } from "firebase/firestore"
+import { collection, getDocs, query, where } from "firebase/firestore"
 import { db, auth,} from '@/firebase/'
 
 export default {
@@ -28,7 +28,7 @@ export default {
   },
   data() {
     return {
-      loadingCheck: false,
+      loadingCheck: true,
 
       coins: [],
       newLabels: [],
@@ -42,21 +42,16 @@ export default {
       series: [],
       chartOptions: {
         labels: [],
-        pie: {
-          donut: {
-            background: '#000000',
-          }
-        },
+        background: '#ffffff',
         fill: {
           colors: ['#f7931a', '#c4c8c8', '#8590f9', '#1e9eec']
         },
+        
         colors:['#f7931a', '#c4c8c8', '#8590f9', '#1e9eec'],
         stroke:{
          colors:['#000'],
          width: '7',
-         opacity: '0'
         },
-
       },
     }
   },
@@ -103,15 +98,21 @@ export default {
         });
         this.coinPrice = curCoinPrice
     },
+    delay(delayInms) {
+      return new Promise(resolve => setTimeout(resolve, delayInms));
+    },
     async LoadChart() {
       this.loadingCheck = true
+      await this.delay(100)
       await this.getCoins()
       await this.updateChart()
       this.loadingCheck = false
     }
   },
   async mounted() {
-    await this.LoadChart()
+    
+      await this.LoadChart()
+    
   }
 }
 </script>
