@@ -1,9 +1,9 @@
 <template>
   <div class="wallet-elements">
     <div class="button-row">
-      <button class="button" @click="showModalSend = true">Send Crypto</button>
-      <button class="button" @click="showModalRecive = true">Recive Crypto</button>
-      <button class="button" @click="getCoins">Refresh</button>
+      <button class="wallet-button" @click="showModalSend = true">Send Crypto</button>
+      <button class="wallet-button" @click="showModalRecive = true">Recive Crypto</button>
+      <button class="wallet-button" @click="getCoins">Refresh</button>
     </div>
     <loading-indicator class="loadingIndicator" v-if="loadingCheck"></loading-indicator>
     <ul v-else class="wallet-wrapper">

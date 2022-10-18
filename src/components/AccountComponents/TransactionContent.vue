@@ -48,13 +48,14 @@ p {
   font-size: 20px;
 }
 .transaction-wrapper {
-  border: 2px solid rgb(0, 166, 255);
+  border: 2px solid #2a4b9c;
   border-radius: 40px;
-  box-shadow: 0 0 5px 2px rgb(0, 166, 255);
+  box-shadow: 0 0 5px 2px #2a4b9c;
   margin: 30px;
-  background: rgb(2,0,36);
-  background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(15,15,89,1) 51%, rgba(0,0,0,1) 100%);
+  background: rgb(16,31,66);
+  background: linear-gradient(90deg, rgba(16,31,66,1) 0%, rgba(38,56,102,1) 29%, rgba(38,56,102,1) 71%, rgba(12,22,46,1) 100%);
 }
+
 .transaction {
   text-align: left;
   padding-left: 40px;
@@ -105,7 +106,7 @@ p {
     margin-top: 18px;
     margin-bottom: 22px;
     padding: 8px 16px;
-    border: 0px rgb(0, 166, 255) solid;
+    border: 0px #2a4b9c solid;
     border-radius: 28px;
     background-color: rgba(0, 166, 255, 0);
     font-size: 18px;
@@ -119,7 +120,7 @@ p {
     }
 
 .more-button:hover {
-    background-color: rgba(0, 166, 255, 1);
+    background-color: #2a4b9c;
     color: #fff
 }
 </style>

@@ -9,15 +9,15 @@
       </span>
     </h1>
     <ul>
-      <li class="button" v-if="!collapsed"><a href="#"><SidebarLink to="/">Home</SidebarLink></a></li>
-      <li class="button" v-if="!collapsed"><a href="#"><SidebarLink to="/Chart">Chart</SidebarLink></a></li>
-      <li class="button" v-if="!collapsed"><a href="#"><SidebarLink to="/Build">Build</SidebarLink></a></li>
-      <li class="button" v-if="!collapsed"><a href="#"><SidebarLink to="/Staking">Staking</SidebarLink></a></li>
-      <li class="button" v-if="!collapsed"><a href="#"><SidebarLink to="/Learn">Learn</SidebarLink></a></li>
+      <li class="wallet-button" v-if="!collapsed"><a href="#"><SidebarLink to="/">Home</SidebarLink></a></li>
+      <li class="wallet-button" v-if="!collapsed"><a href="#"><SidebarLink to="/Chart">Chart</SidebarLink></a></li>
+      <li class="wallet-button" v-if="!collapsed"><a href="#"><SidebarLink to="/Build">Build</SidebarLink></a></li>
+      <li class="wallet-button" v-if="!collapsed"><a href="#"><SidebarLink to="/Staking">Staking</SidebarLink></a></li>
+      <li class="wallet-button" v-if="!collapsed"><a href="#"><SidebarLink to="/Learn">Learn</SidebarLink></a></li>
     </ul>
     <a href="#" class="logout">
       <router-link
-        class="button"
+        class="wallet-button"
         @click="$store.dispatch('logout')"
         v-if="$store.state.user && !collapsed"
         to="/">Logout
@@ -53,11 +53,11 @@ export default {
   transition: 0.2s ease;
   display: flex;
   flex-direction: column;
-  background-color: #000000;
+  background-color: #0a0f26;
   cursor: pointer;
-  border: 2px solid rgb(0, 166, 255);
+  border: 2px solid #2a4b9c;
   border-radius: 20px;
-  box-shadow: 0 0 5px 2px rgb(0, 166, 255);
+  box-shadow: 0 0 5px 2px #2a4b9c;
 }
 .sidebar h1 {
   height: 2.5em;
@@ -93,5 +93,8 @@ ul {
   bottom: 0;
   margin-bottom: 40px;
   margin-left: 20px;
+}
+.wallet-button {
+  width: 150px;
 }
 </style>

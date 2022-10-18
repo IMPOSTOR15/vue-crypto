@@ -1,6 +1,9 @@
 <template>
   <div class="transactions-elements">
-    <button class="button" @click="getTransactions">Refresh</button>
+    <button class="reload-button" @click="getTransactions">
+      
+      <img class="button-img" src="https://img.icons8.com/ios-glyphs/72/refresh--v1.png" alt="">
+    </button>
     <loading-indicator class="loadingIndicator" v-if="loadingCheck"></loading-indicator>
     <ul v-else class="transactions-wrapper">
       <transaction-content v-for="transaction in transactions" :key="transaction.id" :transaction="transaction" />
@@ -51,6 +54,7 @@ export default {
 
 <style scoped>
 .transactions-wrapper {
+  margin-top: -20px;
   list-style-type: none;
   padding: 0;
 }
@@ -65,5 +69,21 @@ export default {
 .loadingIndicator {
   margin-top: 10%;
   padding-bottom: 200px;
+}
+.wallet-button {
+  margin: 0 auto 0 auto;
+}
+.reload-button {
+  margin: 0 auto 0 auto;
+  width: 100px;
+  height: 50px;
+  border-radius: 20px;
+  margin-bottom: 10px;
+  background: #476dcb;
+}
+.button-img {
+  width: 30px;
+  margin-top: 5px;
+  margin: 0 auto 0 auto;
 }
 </style>

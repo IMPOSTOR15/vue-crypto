@@ -36,11 +36,11 @@
             <label>Amount of coins to send</label>
             <input type="number" name="input" step="0.00001" required v-model="CountOfCoinToSend" placeholder=" " min="0">
           </div>
-          <button type="submit" class="button">Send</button>
+          <button type="submit" class="send-button">Send</button>
         </div>
       </form>
       <h2 v-else>Nothing to send</h2>
-      <button class="button" @click="$emit('close-modal')">Close</button>
+      <button class="close-button" @click="$emit('close-modal')">Close</button>
     </div>
   </div>
 </template>
@@ -287,5 +287,50 @@ select::-ms-expand {
 .loadingIndicator {
   margin-top: 150px;
   margin-bottom: 120px;
+}
+.close-button {
+  width: 200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.send-button {
+  width: 200px;
+  margin: 10px auto 10px auto;
+  padding: 16px 36px;
+  border-radius: 28px;
+  border: 2px solid #476dcb;
+  background: #0d1431;
+  font-size: 18px;
+  line-height: 21px;
+  font-weight: 500;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  color: #a9e2ff;
+  transition: border 0.5s ease-out;
+}
+.send-button:hover {
+  border: 2px solid #4bcb47;
+  color: #fff
+}
+.close-button {
+  width: 200px;
+  margin: 10px auto 10px auto;
+  padding: 16px 36px;
+  border-radius: 28px;
+  border: 2px solid #476dcb;
+  background: #0d1431;
+  font-size: 18px;
+  line-height: 21px;
+  font-weight: 500;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  color: #a9e2ff;
+  transition: border 0.5s ease-out;
+}
+.close-button:hover {
+  border: 2px solid #ff2020;
+  color: #fff
 }
 </style>

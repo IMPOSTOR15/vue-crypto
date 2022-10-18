@@ -6,7 +6,7 @@
         <qrcode-vue :value="qrValue" :size="qrSize" level="H" />
       </div>
       <h6 class="text50">{{qrValue}}</h6>
-      <button class="button" @click="$emit('close-modal')">Close</button>
+      <button class="wallet-button" @click="$emit('close-modal')">Close</button>
     </div>
   </div>
 </template>
@@ -57,5 +57,8 @@ export default {
 h6 {
   margin-top: 40px;
   margin-bottom: 30px;
+}
+.wallet-button {
+  margin: 0 auto 0 auto;
 }
 </style>

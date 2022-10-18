@@ -1,12 +1,12 @@
 <template>
   <sidebar></sidebar>
   <div class="container">
-    <h1 class="header">Welcome to you personal account</h1>
+    <h1 class="wallet-header">Welcome to you personal account</h1>
     <div class="wallet-space">
       <wallet-chart></wallet-chart>
       <div class="button-row">
-        <button class="button" @click="walletShow">Show Wallet</button>
-        <button class="button" @click="transactionShow">Show Transactions</button>
+        <button class="wallet-button" @click="walletShow">Wallet</button>
+        <button class="wallet-button" @click="transactionShow">Transactions</button>
       </div>
       <div v-if="showTransactions" class="transactions-list">
         <transaction-list></transaction-list>
@@ -89,6 +89,18 @@ export default {
   flex-direction: row;
   position: relative;
   justify-content: center;
+}
+.wallet-header{
+  font-size: 24px;
+  font-weight: 700;
+  padding-top: 30px;
+  font-size: 50px;
+  text-transform: uppercase;
+  background: rgb(87,123,213);
+  background: linear-gradient(93deg, rgba(87,123,213,1) 0%, rgba(170,194,255,1) 29%, rgba(170,194,255,1) 71%, rgba(87,123,213,1) 100%);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  line-height: 50px;
 }
 .button {
   align-self: center;

@@ -39,6 +39,7 @@ body::-webkit-scrollbar-thumb {
 .button {
     margin: 10px;
     padding: 16px 36px;
+    
     border-radius: 28px;
     background: #212121;
     font-size: 18px;
@@ -50,6 +51,27 @@ body::-webkit-scrollbar-thumb {
     color: #a9e2ff;
     transition: background 0.5s ease-out;
     }
+.wallet-button {
+    width: 300px;
+    margin: 10px;
+    padding: 16px 36px;
+    border-radius: 28px;
+    border: 2px solid #476dcb;
+    background: #0d1431;
+    font-size: 18px;
+    line-height: 21px;
+    font-weight: 500;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    color: #a9e2ff;
+    transition: background 0.5s ease-out;
+}
+.wallet-button:hover {
+    background: #476dcb;
+    color: #fff
+}
+
 
 .button:hover {
     background: #002c81;

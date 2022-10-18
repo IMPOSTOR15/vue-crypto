@@ -54,6 +54,12 @@ export default {
          colors:['#0a0f26'],
          width: '7',
         },
+        legend: {
+          show: false,
+        },
+        labels: {
+          show: true,
+        }
       },
     }
   },
@@ -139,13 +145,12 @@ export default {
   justify-content: center;
   color: black;
   position: relative;
-  padding: 20px;
   padding-left: 50px;
   padding-right: 50px;
-  border: 2px solid rgba(255, 255, 255, 0.5);
+  /* border: 2px solid rgba(255, 255, 255, 0.5); */
   border-radius: 20px;
   max-width: 1500px;
-  margin-bottom: 30px;
+  /* margin-bottom: 30px; */
 }
 .chart-bottom {
   display: flex;
@@ -160,12 +165,11 @@ export default {
   border-radius: 20px;
   margin-top: 10px;
   margin-bottom: 10px;
-  background: rgba(0, 166, 255, 1);
+  background: #476dcb;
 }
 
 .button-img {
   width: 30px;
-  /* background-color: #fff; */
 }
 
 </style>

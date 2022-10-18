@@ -36,12 +36,12 @@ export default {
 
 <style scoped>
 .wallet-wrapper {
-  border: 2px solid rgb(0, 166, 255);
+  border: 2px solid #2a4b9c;
   border-radius: 40px;
-  box-shadow: 0 0 5px 2px rgb(0, 166, 255);
+  box-shadow: 0 0 5px 2px #2a4b9c;
   margin: 30px;
-  background: rgb(2,0,36);
-  background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(15,15,89,1) 51%, rgba(0,0,0,1) 100%);
+  background: rgb(16,31,66);
+  background: linear-gradient(90deg, rgba(16,31,66,1) 0%, rgba(38,56,102,1) 29%, rgba(38,56,102,1) 71%, rgba(12,22,46,1) 100%);
 }
 .coins {
   height: 50px;
@@ -74,7 +74,7 @@ export default {
   padding-bottom:40px;
 }
 .balance-wrap {
-  border: 2px rgb(0, 166, 255) solid;
+  border: 2px #3259bd solid;
   border-radius: 15px;
   width: 300px;
   height: 50px;
