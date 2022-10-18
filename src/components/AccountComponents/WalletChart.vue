@@ -1,13 +1,15 @@
 <template>
   <loading-indicator v-if="loadingCheck"></loading-indicator>
+  <h1 v-if="!loadingCheck && noCoins" >Recive coins to use wallet</h1>
   <apexchart 
-    v-else
+    v-if="!loadingCheck && !noCoins"
     class="chart"
     width="460"
     type="donut"
     :options="chartOptions"
     :series="series">
   </apexchart>
+  
   <div class="chart-bottom">
     <h2>Total portfoli price: {{totalPrice.toFixed(2)}} $</h2>
     <button class="reload-button" @click="LoadChart()">
@@ -29,7 +31,7 @@ export default {
   data() {
     return {
       loadingCheck: true,
-
+      noCoins: true,
       coins: [],
       newLabels: [],
       newSeries: [],
@@ -49,7 +51,7 @@ export default {
         
         colors:['#f7931a', '#c4c8c8', '#8590f9', '#1e9eec'],
         stroke:{
-         colors:['#000'],
+         colors:['#0a0f26'],
          width: '7',
         },
       },
@@ -101,15 +103,28 @@ export default {
     delay(delayInms) {
       return new Promise(resolve => setTimeout(resolve, delayInms));
     },
+    checkCoins() {
+      for(let i = 0; i < this.coins.length; i++) {
+        if (this.coins[i].curencyContent.value > 0) {
+          this.noCoins = false
+          return null
+        } else {
+          this.noCoins = true
+        }
+      }
+
+    },
     async LoadChart() {
       this.loadingCheck = true
       await this.delay(100)
       await this.getCoins()
       await this.updateChart()
+      this.checkCoins()
       this.loadingCheck = false
+      
     }
   },
-  async mounted() {
+  async created() {
     
       await this.LoadChart()
     

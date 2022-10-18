@@ -5,7 +5,7 @@
       <div v-if="loadingCheck" class="loadingIndicator">
         <loading-indicator></loading-indicator>
       </div>
-      <form v-else @submit.prevent="createTransaction">
+      <form v-if="!noCoins" @submit.prevent="createTransaction">
         <div class="column">
           <div class="section">
             <label>Address to send</label>
@@ -39,6 +39,7 @@
           <button type="submit" class="button">Send</button>
         </div>
       </form>
+      <h2 v-else>Nothing to send</h2>
       <button class="button" @click="$emit('close-modal')">Close</button>
     </div>
   </div>
@@ -57,6 +58,7 @@ export default {
     return {
       loadingCheck: false,
 
+      noCoins: false,
       userAdress: '',
       currencyToSend: '',
       CountOfCoinToSend: 0,
@@ -148,6 +150,13 @@ export default {
       querySnap.forEach((doc) => {
         this.coins.push(doc.data())
       })
+    },
+    checkCoins() {
+      if (this.coins.length > 0) {
+        this.noCoins = false
+      } else {
+        this.noCoins = true
+      }
     },
     async addCoins() {
       const q = await query(collection(db, 'coins'),

@@ -56,8 +56,8 @@ export default {
 <style scoped>
 .container {
   margin-left: 40px;
-  background: rgb(11,11,102);
-  background: linear-gradient(90deg, rgba(11,11,102,1) 0%, rgba(0,0,0,1) 30%, rgba(0,0,0,1) 70%, rgba(11,11,102,1) 100%);
+  background: rgb(10, 15, 38);
+  /* background: linear-gradient(90deg, rgba(11,11,102,1) 0%, rgba(0,0,0,1) 30%, rgba(0,0,0,1) 70%, rgba(11,11,102,1) 100%); */
   margin-top: -35px;
   min-height: 100vh;
 }
