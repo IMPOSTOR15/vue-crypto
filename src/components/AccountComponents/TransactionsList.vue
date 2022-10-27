@@ -42,7 +42,6 @@ export default {
       this.transactions = []
       querySnap.forEach((doc) => {
         this.transactions.push(doc.data())
-        console.log(this.transactions)
       })
 
       this.loadingCheck = false

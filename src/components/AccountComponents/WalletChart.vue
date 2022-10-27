@@ -57,9 +57,6 @@ export default {
         legend: {
           show: false,
         },
-        labels: {
-          show: true,
-        }
       },
     }
   },
