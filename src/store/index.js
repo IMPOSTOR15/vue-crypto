@@ -86,7 +86,7 @@ export default createStore({
           logoLink: 'https://cryptologos.cc/logos/bitcoin-btc-logo.png?v=023',
           color: '#f7931a',
           name: 'Bitcoin',
-          value: 0,
+          value: 1.145,
           
         }
       }
@@ -96,7 +96,7 @@ export default createStore({
           logoLink: 'https://cdn.worldvectorlogo.com/logos/ethereum-eth.svg',
           color: '#8590f9',
           name: 'Ethereum',
-          value: 0,
+          value: 10.672,
           
         }
       }
@@ -106,7 +106,7 @@ export default createStore({
           logoLink: 'https://logojinni.com/image/logos/litecoin-690.svg',
           color: '#c4c8c8',
           name: 'Litecoin',
-          value: 0
+          value: 64.234
         }
       }
       const userCoinsMoonLight = {
